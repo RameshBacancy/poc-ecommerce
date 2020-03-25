@@ -1,0 +1,32 @@
+<div class="main-div">
+    <div class="box">
+        <form [formGroup]="login" (ngSubmit)="onLoginSubmit()">
+            <h1>Admin Login </h1>
+            <div class="alert alert-danger" *ngIf="error">
+                {{ error }}
+            </div>
+            <div>
+                <input type="email" name="email" formControlName="email" placeholder="email">
+                <div *ngIf="login.controls['email'].errors && !login.controls['email'].untouched" class="error-msg">
+                    <div class="alert alert-danger" [hidden]="!login.controls['email'].errors.required">
+                        Email is required.
+                    </div>
+                    <div class="alert alert-danger" [hidden]="!login.controls['email'].errors.pattern">
+                        Please Enter Valid Email.
+                    </div>
+                </div>
+            </div>
+            <div>
+                <input type="password" name="password" formControlName="password" placeholder="Password">
+                <div *ngIf="login.controls['password'].errors && !login.controls['password'].untouched" class="error-msg">
+                    <div class="alert alert-danger" [hidden]="!login.controls['password'].errors.required">
+                        Password is required.
+                    </div>
+                </div>
+            </div>
+            <button type="submit" [disabled]="login.invalid" class="button">Login</button>
+        </form>
+
+    </div>
+
+</div>

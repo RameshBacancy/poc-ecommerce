@@ -1,0 +1,32 @@
+.title {
+  text-align: center;
+}
+
+.header{
+    height: 60px;
+}
+
+.categoriesList {
+  margin-top: 20px;
+  height: 60px;
+}
+
+.category-div {
+  margin: auto;
+  width: 50%;
+  border: 3px solid #541845;
+  padding: 10px;
+//   border: 1px dotted blue;
+}
+
+
+
+span {
+    float: right;
+    color: red;
+}
+
+
+i{
+  cursor: pointer;
+}

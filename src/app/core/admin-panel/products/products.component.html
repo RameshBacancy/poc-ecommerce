@@ -1,0 +1,87 @@
+<div class="row header">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 title">
+        <h2>Manage Product</h2>
+    </div>
+    <div class="col-md-3">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 mt-2 mb-2">
+        <div class="row" style="height: 50px;">
+            <div class="col-md-4">
+                <div class="form-group m-auto">
+                    <input type="text" class="form-control" [(ngModel)]="filterText" (input)="filter()"
+                        placeholder="searching">
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+
+                <div class="form-group m-auto">
+                    <select class="form-control" (input)="filterCategory=cat.value;filter()" #cat name="" id="category">
+                        <option [disabled]="true" value="">--select category--</option>
+                        <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+                    </select>
+                </div>
+
+
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-secondary" (click)="filterText='';filterCategory='';cat.value='';filter()">Clear
+                    Filter</button>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="row product-header">
+            <div class="col-md-8 right-border">
+                <h3>Product Name</h3>
+            </div>
+            <div class="col-md-2 right-border">
+                <h3>Category</h3>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+
+<ng-container *ngIf="products">
+    <div class="mb-5">
+        <div class="row product" *ngFor="let product of filterProduct | slice: (currentPage-1) * pageSize : (currentPage-1) * pageSize + pageSize">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row product-header">
+                    <div class="col-md-8 right-border">
+                        <h5>{{ product.productTitle }}</h5>
+                    </div>
+                    <div class="col-md-2 right-border">
+                        <h5>{{ product.productCategory }}</h5>
+                    </div>
+                    <div class="col-md-2 ">
+                        <h5 style="float: right;"><i class="fa fa-edit" (click)="onEditClick(product.key)"></i></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</ng-container>
+
+<div class="row" style="float: right;">
+    <ngb-pagination [collectionSize]="filterProduct.length"  [pageSize]="pageSize" [(page)]="currentPage"></ngb-pagination>
+    <div class="com-md-2"></div>
+</div>

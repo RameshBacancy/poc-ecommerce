@@ -1,0 +1,170 @@
+<div class="row header">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 title">
+        <h2>Add New Product</h2>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
+
+<div class="row" *ngIf="categories">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="main-div mb-5">
+
+            <form [formGroup]="product" (ngSubmit)="onProductSubmit()">
+                <!-- product category -->
+                <div class="form-group">
+                    <label for="category">Select Product Category</label>
+                    <select class="form-control" formControlName="productCategory" [(ngModel)]="singleP.productCategory"
+                        name="category" id="category">
+                        <option [disabled]="true">--select category--</option>
+                        <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+                    </select>
+                    <div *ngIf="product.controls['productCategory'].errors && !product.controls['productCategory'].untouched"
+                        class="error-msg">
+                        <div class="alert alert-danger" [hidden]="!product.controls['productCategory'].errors.required">
+                            Product Category is required.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- product title -->
+                <div class="form-group">
+                    <label for="title">Product Title</label>
+                    <input type="text" class="form-control" name="title" id="title" formControlName="productTitle"
+                        placeholder="Enter Product Title">
+
+                    <!-- product title error -->
+                    <div *ngIf="product.controls['productTitle'].errors && !product.controls['productTitle'].untouched"
+                        class="error-msg">
+                        <div class="alert alert-danger" [hidden]="!product.controls['productTitle'].errors.required">
+                            Product Title is required.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- product Detail -->
+                <div class="form-group">
+                    <label for="detail">Product Detail</label>
+                    <textarea class="form-control" name="detail" id="detail" rows="3"
+                        formControlName="productDetail"></textarea>
+                    <!-- product detail error -->
+                    <div *ngIf="product.controls['productDetail'].errors && !product.controls['productDetail'].untouched"
+                        class="error-msg">
+                        <div class="alert alert-danger" [hidden]="!product.controls['productDetail'].errors.required">
+                            Product Detail is required.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- product image url -->
+                <div class="form-group">
+                    <label for="imageUrl">Product Image Url</label>
+                    <input type="text" class="form-control" name="imageUrl" id="imageUrl"
+                        formControlName="productImageUrl" placeholder="Enter Product Image Url">
+                    <!-- product image url error -->
+                    <div *ngIf="product.controls['productImageUrl'].errors && !product.controls['productImageUrl'].untouched"
+                        class="error-msg">
+                        <div class="alert alert-danger" [hidden]="!product.controls['productImageUrl'].errors.required">
+                            Product Image Url is required.
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- product price   -->
+                <div class="form-group">
+                    <label for="price">Product Price</label>
+                    <input type="number" class="form-control" name="price" id="price" formControlName="productPrice"
+                        placeholder="Enter Product Price">
+                    <!-- product price error -->
+                    <div *ngIf="product.controls['productPrice'].errors && !product.controls['productPrice'].untouched"
+                        class="error-msg">
+                        <div class="alert alert-danger" [hidden]="!product.controls['productPrice'].errors.required">
+                            Product Price is required.
+                        </div>
+                        <!-- <div class="alert alert-danger" [hidden]="getNumberOrNot()">
+                            Please Enter Valid Product Price.
+                        </div> -->
+                    </div>
+                </div>
+
+
+                <!-- product link   -->
+                <div class="form-group">
+                    <label for="link">Product Link</label>
+                    <input type="text" class="form-control" name="link" id="link" formControlName="productLink"
+                        placeholder="Enter Product Link">
+                    <!-- product link error -->
+                    <div *ngIf="product.controls['productLink'].errors && !product.controls['productLink'].untouched"
+                        class="error-msg">
+                        <div class="alert alert-danger" [hidden]="!product.controls['productLink'].errors.required">
+                            Product Link is required.
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- product delivery type   -->
+                <div class="form-group">
+                    <label for="delivery">Product Delivery Type</label>
+                    <input type="text" class="form-control" name="delivery" id="delivery"
+                        formControlName="productDeliveryType" placeholder="Enter Product Delivery Type">
+                    <!-- product delivery type error -->
+                    <div *ngIf="product.controls['productDeliveryType'].errors && !product.controls['productDeliveryType'].untouched"
+                        class="error-msg">
+                        <div class="alert alert-danger"
+                            [hidden]="!product.controls['productDeliveryType'].errors.required">
+                            Product Delivery Type is required.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- product site name   -->
+                <div class="form-group">
+                    <label for="siteName">Product Site Name</label>
+                    <input type="text" class="form-control" name="siteName" id="siteName"
+                        formControlName="productSiteName" placeholder="Enter Product Site Name">
+                    <!-- product site name error -->
+                    <div *ngIf="product.controls['productSiteName'].errors && !product.controls['productSiteName'].untouched"
+                        class="error-msg">
+                        <div class="alert alert-danger" [hidden]="!product.controls['productSiteName'].errors.required">
+                            Product Site Name is required.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- product site url -->
+                <div class="form-group">
+                    <label for="siteUrl">Product Site Url</label>
+                    <input type="text" class="form-control" name="siteUrl" id="siteUrl"
+                        formControlName="productSiteLink" placeholder="Enter Product Site Url">
+                    <!-- product site url error -->
+                    <div *ngIf="product.controls['productImageUrl'].errors && !product.controls['productImageUrl'].untouched"
+                        class="error-msg">
+                        <div class="alert alert-danger" [hidden]="!product.controls['productImageUrl'].errors.required">
+                            Product Image Url is required.
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <button type="submit" *ngIf="!productId" class="btn btn-primary" [disabled]="product.invalid">Add
+                    Product</button>
+                <button type="submit" *ngIf="productId" class="btn btn-primary" [disabled]="product.invalid">Edit
+                    Product</button>
+
+                <button type="button" *ngIf="productId" class="btn btn-danger ml-2" (click)="onDeleteProduct()" >Delete Product</button>
+
+            </form>
+
+
+            <!-- <div>
+                {{ product.value | json }}
+            </div> -->
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
