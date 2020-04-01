@@ -1,0 +1,23 @@
+@import 'src/assets/scss/index';
+
+.checkbox {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  .checkbox-img {
+    width: 24px;
+    height: 24px;
+    .chk-img {
+      margin-left: -2px;
+    }
+  }
+  .label {
+    margin-left: 10px;
+  }
+  .checked-label {
+    font-weight: bold;
+  }
+  .disabled-label {
+    color: $primary-light-gray;
+  }
+}

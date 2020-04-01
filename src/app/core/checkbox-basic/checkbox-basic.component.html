@@ -1,0 +1,14 @@
+<div class="checkbox" [style.width]="boxWidth" [style.margin-bottom]="marginBottom">
+  <div class="checkbox-img" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
+    <img *ngIf="fc.disabled && fc.value" class="chk-img" src="../../../assets/icons/checkbox-clicked-disabled.svg">
+    <img *ngIf="fc.disabled && !fc.value" class="chk-img" src="../../../assets/icons/checkbox-unclicked.svg">
+    <img *ngIf="!fc.disabled && !fc.value && !hover" class="chk-img" src="../../../assets/icons/checkbox-unclicked.svg"
+      (click)="toggle()">
+    <img *ngIf="!fc.disabled && !fc.value && hover" class="chk-img"
+      src="../../../assets/icons/checkbox-unclicked-hover.svg" (click)="toggle()">
+    <img *ngIf="!fc.disabled && fc.value" class="chk-img" src="../../../assets/icons/checkbox-clicked.svg"
+      (click)="toggle()">
+  </div>
+  <div *ngIf="label" class="label" [class.checked-label]="!fc.disabled && fc.value"
+    [class.disabled-label]="fc.disabled">{{label}}</div>
+</div>

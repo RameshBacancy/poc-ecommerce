@@ -1,0 +1,22 @@
+<!-- Start: category Form -->
+<form [formGroup]="categoryForm" (ngSubmit)="onCategoryFormSubmit()">
+    <div class="d-flex justify-content-between">
+        <!-- Start : category Name input box -->
+        <app-input-basic type="text" [fc]="categoryForm.get('categoryName')" placeholder="Add category..." icon="car-blue">
+        </app-input-basic>
+        <!-- End : category Name input box -->
+
+        <!-- Start : for add or edit button show -->
+        <ng-container *ngIf="category.value == ''; else showEdit">
+            <button type="submit" class="primary submit">Add Category</button>
+        </ng-container>
+
+        <ng-template #showEdit>
+            <button type="submit" class="primary submit">Edit Category</button>
+        </ng-template>
+        <!-- End : for add or edit button show -->
+
+
+    </div>
+</form>
+<!-- End: category Form -->

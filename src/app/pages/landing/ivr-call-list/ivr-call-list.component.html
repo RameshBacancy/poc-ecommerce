@@ -1,0 +1,47 @@
+<div class="number-list-content  container-fluid">
+    <div class="number-search-filter mb-4">
+        <form [formGroup]="typeForm" (ngSubmit)="onTypeSearchSubmit()" (keydown.enter)="$event.preventDefault()">
+            <h4>Search Number from Filter</h4>
+            <div class="d-flex justify-content-between">
+                <app-select-basic [options]="typeOptions" placeholder="Select Type..." formControlName="type"
+                    [group]="typeForm" name="type" [selectedValue]="typeOptions[0].value"
+                    [ngClass]="{'is-invalid':selectSubmitted && s.type.errors }" icon="time-blue">
+                </app-select-basic>
+
+                <app-input-basic type="text" [fc]="typeForm.get('searchNumber')" placeholder="search number..."
+                    icon="car-blue">
+                </app-input-basic>
+
+                <button type="submit" class="primary submit">Submit</button>
+                <!-- <pre> {{typeForm.value | json }}</pre> -->
+            </div>
+        </form>
+    </div>
+
+    <div class="number-search-results" *ngIf="numberLists">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let numberList of numberLists; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{numberList.phoneNumber}}</td>
+                    <td>{{numberList.addRequirement}}</td>
+                    <td>
+                        <span>isSMS: {{numberList.capabilities.SMS}}</span>
+                        <span>isMMS: {{numberList.capabilities.MMS}}</span>
+                        <span>isVOICE: {{numberList.capabilities.fax}}</span>
+                        <span>isVOICE: {{numberList.capabilities.voice}}</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" (click)="onPurchaseNumber(numberList)"> Buy </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

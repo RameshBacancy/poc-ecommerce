@@ -1,0 +1,12 @@
+<div class="checkbox" *ngFor="let option of options; let i = index;"> 
+  <input
+  type="checkbox" 
+  class="sr-only"
+  name="option{{option.id}}"
+  id="option{{option.id}}"
+  [(ngModel)]="option.checked"
+  (change)="onToggle()" 
+  [attr.disabled]="disabled || null"
+  [ngClass]="{'disabled': disabled}">
+  <label for="option{{option.id}}">{{option.name}}</label>  
+</div>

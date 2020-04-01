@@ -1,0 +1,15 @@
+<div class="dropdown" [style.margin-bottom]="marginBottom">
+  <label for="" *ngIf="label">{{label}}</label>
+  <ng-container [formGroup]="group" *ngIf="group">
+    <div class="select-dropdown" (clickOutside)="handleClickOutside()" [class.active]="isFocused">
+      <img *ngIf="iconSource" [src]="iconSource" class="icon">
+      <input [formControlName]="name" [attr.placeholder]="placeholder" (click)="showOptions()" class="selectoption"
+        (keydown)="_handleKeyUp($event)" [value]="select" (input)="filter($event)">
+      <ul class="list-block" *ngIf="isFocused">
+        <li *ngFor="let item of filterOptions; let i = index;" (click)="selectOption(item)"
+          [class.is-row-active]="(rowLocation == i)" (mouseover)="rowLocation = i"><a>{{item.name}}</a></li>
+      </ul>
+    </div>
+  </ng-container>
+  <ng-content select="[rx-error]" class="help-block"></ng-content>
+</div>

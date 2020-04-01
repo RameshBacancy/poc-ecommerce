@@ -1,0 +1,7 @@
+<div class="slider-block">
+  <label for="">{{label}}</label>
+  <div class="value-block">{{prefix}}{{value}} {{suffix}}</div>
+  <div class="single_slide">
+    <ng5-slider [(value)]="value" [options]="options" (userChangeEnd)="onUserChangeEnd($event)"></ng5-slider>
+  </div>
+</div>

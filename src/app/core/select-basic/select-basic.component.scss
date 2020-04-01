@@ -1,0 +1,175 @@
+@import 'src/assets/scss/index';
+
+
+.dropdown {
+label{margin-bottom: 5px; display: $block;} 
+.select-dropdown ul.list-block {
+    margin: 0px 0px 0px; padding: 0px; background: $color-white;    
+    @include box-shadow(0, 0px, 7px 1px, #DDDDDD);
+    @include border-radius(5px);
+    max-height: 230px;
+    overflow: auto;
+    position: relative;
+    z-index: 12;
+    li { 
+        list-style: $none; 
+        a { 
+            padding: 10px; 
+            color: #152934; 
+            text-decoration: $none; 
+            display: $block; 
+            font-weight:$font-weight-300;
+            &:hover {
+                background-color: darken(#F5F7FA, 1%);
+                background-image: imagepath('icons/tick-blue.svg');
+                background-repeat:no-repeat;
+                background-position: $right 15px $center;
+            }
+        }
+        &.is-row-active {
+            background-color: darken(#F5F7FA, 1%);
+            background-image: imagepath('icons/tick-blue.svg');
+            background-repeat:no-repeat;
+            background-position: $right 15px $center;
+        }
+    }
+}
+.select-dropdown{ 
+    width: 100%; position: relative;
+    .selectoption {
+        color: $grey-darkest;
+        cursor: pointer;
+        width: 100%;
+        user-select: $none;
+        @include box-sizing(border-box);
+        @include border-radius(55px);
+        outline: $none;
+    }
+  }
+}
+
+
+
+
+:host  ::ng-deep .selectoption { .main-box {  position: relative;
+    &::after {
+        position: absolute;
+        content: "";
+        top: 22px;
+        right: 22px;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-color: #000 transparent transparent transparent;
+    }
+}
+.active { 
+    &::after{
+  border-color: transparent transparent #000 transparent;
+  top: 16px;
+}
+}
+}
+
+:host(.is-invalid){
+  .selectoption{
+    border-color:$error;
+  }
+  .label {
+    color: $error;
+  }
+  ::ng-deep div[rx-error] {
+    color: $error;
+    font-size: 12px;
+    line-height: 1.33;
+    margin-top: 4px;
+  }
+}
+
+:host(app-select-basic) ::ng-deep {
+
+    .label {
+        margin-top: 0;
+        margin-bottom: 10px;
+        white-space: nowrap;
+    }
+    
+    .select-dropdown {
+        height: 48px;
+        min-width: 200px;
+        border-radius: 24px;
+        background-color: $color-white;
+        cursor: text;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: "";
+            top: 22px;
+            right: 22px;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-color: $primary-blue transparent transparent transparent;
+        }
+
+        &.active { 
+            
+            &::after {
+                border-color: transparent transparent $primary-blue transparent;
+                top: 16px;
+            }
+        }
+
+        .icon {
+            position: absolute;
+            top: 12px;
+            left: 0;
+        }
+
+        input {
+            display: block;
+            padding: 12px 18px 12px 58px;
+            height: 48px;
+            border: 1px solid $primary-button-disabled;
+            outline: 0;
+            width: 100%;
+            color: $grey-darkest;
+            cursor: pointer;
+            width: 100%;
+            user-select: $none;
+            @include box-sizing(border-box);
+            @include border-radius(55px);
+            outline: $none;
+
+            &.ng-touched.ng-invalid {
+                border-color: $error;
+            }
+        }
+
+        &:hover {
+            border-color: $primary-blue;
+        }
+        &.disabled {
+            border: 1px solid $primary-button-disabled !important;
+            background-color: $background-grey;
+            cursor: not-allowed;
+        }
+        &.active {
+            border-color: $secondary-blue;
+        }
+        &.error-box {
+            border-color: $error !important;
+        }
+        .icon {
+            margin: 3px 20px;
+        }
+    }
+    
+    [rx-error] {
+        color: $error;
+        font-size: 12px;
+        line-height: 1.33;
+        margin-top: 4px;
+    }
+}

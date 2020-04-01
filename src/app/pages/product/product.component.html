@@ -1,0 +1,79 @@
+<div class="sidenav">
+</div>
+<div class="main">
+        <div class="grid_list_search_bar">
+                <img src="/assets/list.png" (click)="listview=true">
+                <img src="/assets/menu.png" (click)="listview=false">
+                <input type="text" placeholder="Search">
+        </div>
+        <!-- Grid View -->
+        <div class="row grid_row" *ngIf="!listview">
+                <div class="column" *ngFor="let product of products">
+                        <div class="tab">
+                                <div class="image" (click)="selectedtab(product.key);">
+                                        <img src={{product.productImageUrl}}>
+                                </div>
+                                <div class="content">
+                                        <h5 (click)="selectedtab(product.key);" class="title_content">
+                                                {{product.productTitle}}</h5>
+                                        <hr>
+                                        <h4>{{product.productPrice | currency:'INR'}}</h4>
+                                        <a href="{{product.productSiteLink}}">{{product.productSiteName}}</a>
+                                </div>
+                        </div>
+                        <div id="{{product.key}}" class="tabnotselected">
+                                <div class="selected">
+                                        <div class="image">
+                                                <img src={{product.productImageUrl}}>
+                                        </div>
+                                        <div class="content">
+                                                <button (click)="deselectedtab(product.key);"
+                                                        class="close">&times;</button>
+
+                                                <h3>{{product.productTitle}}
+                                                </h3>
+                                                <br />
+                                                <h6 [innerHTML]=product.productDetail></h6>
+                                                <br />
+                                                <h6><a href="{{product.productSiteLink}}">click here for more
+                                                                infromation
+                                                                &#187;</a></h6>
+                                                <br />
+                                                <h4>{{product.productPrice | currency:'INR'}}</h4>
+                                                <a href="{{product.productSiteLink}}">{{product.productSiteName}}</a>
+                                                <br>
+                                                <button class="btn btn-primary">Visit Site</button>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <!-- List View -->
+        <div *ngIf="listview">
+                <div class="row" *ngFor="let product of products">
+                        <div class="col list_col">
+                                <div class="list" id="{{product.key}}">
+                                        <div class="image" (click)="selectedColumn(product.key);">
+                                                <img src={{product.productImageUrl}}>
+                                        </div>
+                                        <div class="content">
+                                                <button (click)="deselectColumn(product.key);"
+                                                        class="close">&times;</button>
+
+                                                <h3 (click)="selectedColumn(product.key);">{{product.productTitle}}
+                                                </h3>
+                                                <br />
+                                                <h6 [innerHTML]=product.productDetail></h6>
+                                                <br />
+                                                <h6><a href="{{product.productSiteLink}}">click here for more
+                                                                infromation
+                                                                &#187;</a></h6>
+                                                <br />
+                                                <h4>{{product.productPrice | currency:'INR'}}</h4>
+                                                <button class="btn btn-primary btnhide">Visit Site</button>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>

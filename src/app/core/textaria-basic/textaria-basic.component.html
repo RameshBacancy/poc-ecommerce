@@ -1,0 +1,12 @@
+<div class="form-group" [style.margin-bottom]="marginBottom" [style.width]="boxWidth">
+  <label class="control-label" for="inputcontrol" *ngIf="label && label.length">{{ label }}</label>
+  <ng-container [formGroup]="group" *ngIf="group">
+    <div [style.width]="boxWidth">
+      <textarea class="form-control" #input [formControlName]="name" [attr.rows]="rows" [attr.cols]="cols"
+        [attr.disabled]="disabled" [attr.readonly]="readonly" [attr.placeholder]="placeholder" [ngClass]="{'disabled': disabled}"
+        (input)="onChange(input.value)">
+    </textarea>
+    </div>
+  </ng-container>
+  <ng-content select="[rx-error]" class="help-block"></ng-content>
+</div>
