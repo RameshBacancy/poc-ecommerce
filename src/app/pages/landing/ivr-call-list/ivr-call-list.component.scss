@@ -1,0 +1,17 @@
+@import 'src/assets/scss/index.scss';
+.number-list-content{
+    padding-top:15px;
+    .number-search-filter{
+        width: 750px;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #D0D8E8;
+        background: #fff;
+    }
+    .number-search-results{
+        border-radius: 8px;
+        border-left: 1px solid #D0D8E8;
+        border-right: 1px solid #D0D8E8;
+        background: #fff;
+    }
+}

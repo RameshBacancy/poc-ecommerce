@@ -1,0 +1,48 @@
+:host ::ng-deep .ng5-slider .ng5-slider-pointer { 
+    width: 20px; 
+    height: 24px; 
+    top: -12px;
+}
+
+.value-block { 
+    float: right; 	
+    color: #152935; 
+    font-size: 18px; 
+    font-weight: bold;
+}
+.doubleslider label { 
+    display: block;
+}
+.slider-block { 
+    width: 409px;
+}
+
+:host  ::ng-deep .doubleslider .ng5-slider .ng5-slider-pointer:after { 
+    display: none;
+}
+:host ::ng-deep .doubleslider.hour-price { 
+    color: #152935; 
+    font-size: 16px; font-weight: 600;
+}
+:host ::ng-deep .doubleslider .hour-price .miniprice { 
+    display:inline-block; 
+ font-size: 16px; font-weight: 600;
+}
+:host ::ng-deep .doubleslider .hour-price .maxprice { 
+    display: inline-block; 
+  font-size: 16px; font-weight: 600;
+}
+:host ::ng-deep .doubleslider .ng5-slider .ng5-slider-bubble { 
+    display: none;
+}
+:host ::ng-deep .doubleslider .ng5-slider .ng5-slider-selection{
+    background: #87D3ED
+}
+
+:host ::ng-deep .doubleslider .ng5-slider .ng5-slider-pointer {
+    background-color: #192C3F;
+    top: -12px;outline: none;
+    width: 24px; height: 24px;
+
+}
+.small-text { font-size: 11px; display: block; margin-top: 5px;}

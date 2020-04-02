@@ -1,0 +1,12 @@
+<h5 *ngIf="label" [hidden]="!hideLabel" class="label">{{label}}</h5>
+<div class="main-box" [class.disabled]="fc.disabled" [class.active]="isFocused" (click)="focusInput($event)"
+  [class.error-box]="(fc.touched && fc.errors)" [style.width]="boxWidth">
+  <!-- <img *ngIf="iconSource" [src]="iconSource" class="icon"> -->
+  <fa class="icon" *ngIf="iconSource" name="{{iconSource}}"></fa>
+  <input [id]="inputId" class="input" [type]="type" [formControl]="fc" [placeholder]="placeholder"
+    [class.disabled]="fc.disabled" (focus)="onFocusIn($event)" (focusout)="onFocusOut()">
+</div>
+<div [style.margin-bottom]="marginBottom">
+    <div *ngIf="!errorMsg.length && (fc.touched && fc.errors)" class="error-msg">{{label}} required</div>
+  <div *ngFor="let err of errorMsg" class="error-msg">{{err}}</div>
+</div>

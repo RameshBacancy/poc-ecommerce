@@ -1,0 +1,49 @@
+@import 'src/assets/scss/index';
+.label {
+	margin-top: 0;
+	margin-bottom: 10px;
+	white-space: nowrap;
+}
+.main-box {
+	height: 48px;
+	min-width: 200px;
+	border: 1px solid $primary-button-disabled;
+	border-radius: 24px;
+	background-color: white;
+	display: inline-flex;
+	justify-content: flex-start;
+	align-items: center;
+	cursor: text;
+	&:hover {
+		border-color: $primary-blue;
+	}
+	&.disabled {
+		border: 1px solid $primary-button-disabled !important;
+		background-color: $background-grey;
+		cursor: not-allowed;
+	}
+	&.active {
+		border-color: $secondary-blue;
+	}
+	&.error-box {
+		border-color: $error !important;
+	}
+	.icon {
+		margin: 0 20px;
+	}
+	.input {
+		border: 0;
+		outline: 0;
+		margin-right: 20px;
+		width: calc(100% - 80px);
+		&.disabled {
+			background-color: $background-grey;
+			cursor: not-allowed;
+		}
+	}
+}
+
+.error-msg {
+	color: $error;
+	font-size: 11px;
+}

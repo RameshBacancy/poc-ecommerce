@@ -1,0 +1,9 @@
+<div class="doubleslider">
+  <label for="">{{label}}</label>
+  <span class="small-text">{{text}}</span>
+  <ng5-slider [(value)]="value" [options]="options" [(highValue)]="maxValue" (userChangeEnd)="onUserChangeEnd($event)">
+  </ng5-slider>
+  <div class="hour-price">
+    <div class="miniprice">{{prefix}}{{value}}</div> - <div class="maxprice">{{prefix}}{{maxValue}} {{suffix}}</div>
+  </div>
+</div>

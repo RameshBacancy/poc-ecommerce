@@ -1,0 +1,84 @@
+<div class="number-list-content  container-fluid">
+    <!-- Start : add product button -->
+    <div class="number-search-filter mb-4" style="margin-left: 83%;">
+        <button type="button" class="primary submit" (click)="onAddProductClick()">Add Product</button>
+    </div>
+    <!-- End : add product button -->
+
+    <!-- Start : Product list in table -->
+    <div class="number-search-results" *ngIf="isProductListShow">
+        <div class="table-striped   " *ngIf="!products.length">
+            <h2 style="text-align: center;">No Record Found</h2>
+        </div>
+        <table class="table table-striped" *ngIf="products.length">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Redirect Link</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td style="max-width: 300px;">{{ product.productTitle }}</td>
+                    <td>{{ product.productCategory }}</td>
+                    <td>{{ product.productPrice | currency: 'INR':true }}</td>
+                    <td><a [href]="product.productLink" target="_blank">Redirect Link</a></td>
+                    <td>
+                        <button class="btn btn-primary mr-2" (click)="onEditProductClick(product)">Edit</button>
+                        <button class="btn btn-danger" (click)="onDeleteProductClick(product.key,product.productImageUrl)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- End : Product list in table -->
+
+</div>
+
+
+<!-- <div class="number-list-content  container-fluid">
+    <div class="number-search-filter mb-4"> -->
+<!-- <div class="d-flex justify-content-between"> -->
+<!-- <button type="button" (click)="onAddProductClick()" class="primary submit">Add Product</button> -->
+<!-- </div> -->
+<!-- </div> -->
+
+<!-- <div class="number-search-results"> -->
+<!-- <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Redirect Link</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody> -->
+<!-- <tr *ngFor="let numberList of numberLists; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{numberList.phoneNumber}}</td>
+                    <td>{{numberList.addRequirement}}</td>
+                    <td>
+                        <span>isSMS: {{numberList.capabilities.SMS}}</span>
+                        <span>isMMS: {{numberList.capabilities.MMS}}</span>
+                        <span>isVOICE: {{numberList.capabilities.fax}}</span>
+                        <span>isVOICE: {{numberList.capabilities.voice}}</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" (click)="onPurchaseNumber(numberList)"> Buy </button>
+                    </td>
+                </tr> -->
+<!-- </tbody>
+        </table>
+    </div>
+</div>
+
+
+ -->

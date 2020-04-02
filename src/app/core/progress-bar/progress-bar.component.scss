@@ -1,0 +1,20 @@
+@import "src/assets/scss/index.scss";
+.w3-border {
+  background: #e1e6f1;
+  float: $left;
+  width: 100%;
+  .w3-grey {
+    color: #000 !important;
+    background-color: $tertiary-blue;
+    height: 24px;
+    
+  }
+}
+.progress-value {
+  float: left;
+  width: 24px;
+  text-align: center;
+  padding: 3px 5px;
+  color: $primary-green;
+  text-decoration: underline;
+}

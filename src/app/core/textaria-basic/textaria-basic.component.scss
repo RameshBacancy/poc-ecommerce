@@ -1,0 +1,85 @@
+@import 'src/assets/scss/index';
+
+label {
+  color:$grey-darkest;	
+  font-size:$fontsize-14;	
+  font-weight: 300;	line-height:($fontsize-14 + 4);
+  display: block;
+  line-height: 1.29;
+  margin-bottom: ($fontsize-14 - 6px);
+}
+
+.form-group {
+    .form-control {
+        height: auto;
+        padding: $fontsize-14;
+        width: 100%;
+        border: ($fontsize-14 - 12) solid $grey-light-color;
+        border-radius: ($fontsize-25 - 1);
+        background-color:$color-white;
+        color: $grey-darkest;	
+        font-size: $fontsize-14;	
+        font-weight: 300;	
+        resize: $none;
+        line-height: ($fontsize-14 + 4);
+        outline:$none;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+      }
+      &:focus {
+        border-color:$none;
+        outline:$none;
+        box-shadow: $none;
+      }
+}
+
+
+:host([disabled]) {
+  label {
+    color:$grey-darkest;
+  }
+  .form-control {
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: $color-white;
+    opacity: 1;
+  }  
+  ::ng-deep div[rx-help] {
+    color: $grey-darkest;
+  }
+}
+
+:host(.is-invalid){
+  .form-control{
+    border-color:$error;
+  }
+  .label {
+    color: $error;
+  }
+  ::ng-deep div[rx-error] {
+    color: $error;
+    font-size: 12px;
+    line-height: 1.33;
+    margin-top: 4px;
+  }
+}
+
+
+::ng-deep .form-group {
+  .form-control.ng-dirty.ng-invalid {
+    border-color: $error;
+  }
+  .form-control.ng-touched.ng-invalid {
+    border-color: $error;
+  }
+  .label {
+    color: $error;
+  }
+  div[rx-error] {
+    color: $error;
+    font-size: 12px;
+    line-height: 1.33;
+    margin-top: 4px;
+  }
+}

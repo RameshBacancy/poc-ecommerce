@@ -1,0 +1,122 @@
+<div class="md-3 padding-25">
+
+    Click button to open the Alert
+    <div class="inlineButton">
+        <button class="primary btn" (click)="OpenSuccessAlert()">Success</button>
+        <button class="primary btn" (click)="OpenWarningAlert()">Warning</button>
+        <button class="primary btn" (click)="OpenDangerAlert()">Danger</button>
+    </div>
+    <br><br>
+    <form [formGroup]="textareaForm" (ngSubmit)="onSubmit()">
+        <app-textaria-basic label="Textarea label 1" placeholder="Please Entere Message" type="text" [rows]="10"
+            [cols]="200" [group]="textareaForm" name="firstName"
+            [ngClass]="{'is-invalid':submitted && f.firstName.errors }">
+            <div rx-error
+                *ngIf="submitted && f.firstName.errors || (textareaForm.get('firstName').invalid && (textareaForm.get('firstName').dirty || textareaForm.get('firstName').touched))">
+                Error
+                message text goes here</div>
+        </app-textaria-basic>
+
+        <br />
+
+        <app-textaria-basic label="Textarea label 2" placeholder="Please Entere Message" type="text" [rows]="10"
+            [cols]="200" [group]="textareaForm" name="lastname"
+            [ngClass]="{'is-invalid':submitted && f.lastname.errors }">
+            <div rx-error
+                *ngIf="submitted && f.lastname.errors || (textareaForm.get('lastname').invalid && (textareaForm.get('lastname').dirty || textareaForm.get('lastname').touched))">
+                Error
+                message text goes here</div>
+        </app-textaria-basic>
+
+        <br />
+        <app-textaria-basic label="Disabled Textarea Label" placeholder="Placeholder" type="text"
+            formControlName="generic" [rows]="10" [cols]="200" [group]="textareaForm" name="generic" disabled>
+        </app-textaria-basic>
+        <br>
+        <button type="submit" class="primary submit">Submit</button>
+        <button type="button" class="primary" (click)="modalOpen()">Modal open</button>
+        <div>
+            <pre>{{textareaForm.value | json}}</pre>
+        </div>
+    </form>
+    <br /><br />
+
+    <div>
+        <form [formGroup]="selectForm" (ngSubmit)="onSelectSubmit()" (keydown.enter)="$event.preventDefault()">
+            <h4> Dropdown Section</h4>
+            <br />
+            <app-select-basic [options]="selectOptions" label="Select" placeholder="Select..." formControlName="select"
+                [group]="selectForm" name="select" [ngClass]="{'is-invalid':selectSubmitted && s.select.errors }"
+                icon="time-blue">
+                <div rx-error
+                    *ngIf="selectSubmitted && s.select.errors || (selectForm.get('select').invalid && (selectForm.get('select').dirty || selectForm.get('select').touched))">
+                    Error
+                    message text goes here</div>
+            </app-select-basic>
+
+            <app-select-basic [options]="selectOptions" label="Select" placeholder="Select..." formControlName="select2"
+                [group]="selectForm" name="select2" [ngClass]="{'is-invalid':selectSubmitted && s.select2.errors }"
+                icon="gas-blue">
+                <div rx-error
+                    *ngIf="selectSubmitted && s.select2.errors || (selectForm.get('select2').invalid && (selectForm.get('select2').dirty || selectForm.get('select2').touched))">
+                    Error
+                    message text goes here</div>
+            </app-select-basic>
+
+            <button type="submit" class="primary submit">Submit</button>
+            <pre> {{selectForm.value | json }}</pre>
+        </form>
+    </div>
+
+    <br />
+    <br />
+    <div>
+        <h4> Slider Section</h4>
+        <br />
+        <br />
+        <div>
+            <form [formGroup]="sliderForm" (ngSubmit)="onSliderSubmit()">
+                <app-slider-basic name="singleSlider" [options]="sliderOptions" (sliderSelect)="onSliderChange($event)"
+                    label="Single" suffix="Km" formControlName="singleSlider"></app-slider-basic>
+                <pre> {{ sliderValue }}</pre>
+                <br>
+                <br>
+                <app-range-slider-basic [options]="rangeOptions" [maxValue]="sliderMax"
+                    (rangeSelect)="onRangeChange($event)" label="Double Slider" suffix="per hour" prefix="$"
+                    text="The average price per hour is $259" name="rangeslider" formControlName="rangeSlider">
+                </app-range-slider-basic>
+                <pre>{{rangeValue | json }}</pre>
+                <br>
+
+                <button type="submit" class="primary submit">Submit</button>
+                <div>
+                    <pre>{{sliderForm.value | json}}</pre>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div [formGroup]="rating">
+        <app-rating-stars label='Rating' [float]="true" (onClick)="clickingOver($event)" formControlName="rate">
+        </app-rating-stars>
+        {{ratingValue}}
+    </div>
+
+    <div [formGroup]="ratingReadOnly">
+        <app-rating-stars label='Rating Read Only' readonly="true" [float]="true"
+            (onClick)="clickingReadOnlyOver($event)" formControlName="rateReadOnly"></app-rating-stars>
+        {{ratingReadValue}}
+    </div>
+
+
+    <br> <br> <br>
+
+    <h5>Progressbar</h5>
+    <br>
+    <div>
+        <app-progress-bar value=12></app-progress-bar>
+    </div>
+</div>
