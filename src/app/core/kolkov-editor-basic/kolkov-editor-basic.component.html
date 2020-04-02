@@ -1,0 +1,14 @@
+<div class="form-group" [style.margin-bottom]="marginBottom" [style.width]="boxWidth">
+    <h5 class="control-h5" *ngIf="label && label.length">{{ label }}</h5>
+    <ng-container [formGroup]="group" *ngIf="group">
+        <div [style.width]="boxWidth">
+            <angular-editor class="form-control" 
+                            [config]="config"
+                            [formControlName]="name"
+                            [attr.disabled]="disabled"
+                            ></angular-editor>
+        </div>
+    </ng-container>
+    <ng-content select="[rx-error]" class="help-block">
+    </ng-content>
+</div>

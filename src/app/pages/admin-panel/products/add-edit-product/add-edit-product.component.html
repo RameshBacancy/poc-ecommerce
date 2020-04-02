@@ -16,27 +16,8 @@
             <form [formGroup]="productForm" (submit)="onProductSubmit()">
 
                 <ng-container *ngIf="categories">
+                    <!-- product category select option -->
                     <div class="form-group">
-
-                        <!-- <h5> <label for="category">Select Product Category</label></h5>
-                        <select class="form-control select" formControlName="productCategory"
-                            [ngStyle]="{'border':!productForm.controls['productCategory'].untouched && productForm.controls['productCategory'].errors? '1px solid red': '1px solid' }"
-                            name="" id="">
-                            <option [disabled]="true">--select category--</option>
-                            <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}
-                            </option>
-                        </select>
-
-
-                        <div *ngIf="productForm.controls['productCategory'].errors && !productForm.controls['productCategory'].untouched"
-                            class="error-msg ">
-                            <div class="select-error"
-                                [hidden]="!productForm.controls['productCategory'].errors.required">
-                                Product Category is required.
-                            </div>
-                        </div> -->
-
-
                         <app-select-basic [options]="categories" label="Select Product Category" placeholder="Select..."
                             formControlName="productCategory" [group]="productForm" name="productCategory"
                             [ngClass]="{'is-invalid':productForm.submit && productForm.controls['productCategory'].errors }"
@@ -56,23 +37,19 @@
 
                     <!-- product Detail -->
                     <div class="form-group">
-                        <h5><label for="detail">Product Detail</label></h5>
-                        <div
-                            [ngStyle]="{'border':!productForm.controls['productDetail'].untouched && productForm.controls['productDetail'].errors? '1px solid red': 'black' }">
-                            <angular-editor formControlName="productDetail" [config]="config"></angular-editor>
-                        </div>
-                        <div *ngIf="productForm.controls['productDetail'].errors && !productForm.controls['productDetail'].untouched"
-                            class="error-msg">
-                            <div class=" select-error"
-                                [hidden]="!productForm.controls['productDetail'].errors.required">
-                                Product Detail is required.
+                        <app-kolkov-editor-basic label="Product Details" placeholder="Please Enter product details..."
+                            [group]="productForm" name="productDetail"
+                            [ngClass]="{'is-invalid': productForm.submit && productForm.controls['productDetail'].errors }">
+                            <div rx-error
+                                *ngIf="(productForm.controls['productDetail'].invalid && ( productForm.controls['productDetail'].dirty || productForm.controls['productDetail'].touched))">
+                                Product Details required.
                             </div>
-                        </div>
+                        </app-kolkov-editor-basic>
                     </div>
 
                     <!-- product image url -->
                     <div class="form-group">
-                        <label for="imageUrl">Product Image</label>
+                        <h5><label for="imageUrl">Product Image</label></h5>
                         <div class="form-group">
                             <label for=""></label>
                             <input type="file" #fileInput style="display: none" (change)="onPhotoSelected($event)"
@@ -277,5 +254,39 @@
                             class="error-msg ">
                             <div class="select-error" [hidden]="!productForm.controls['productPrice'].errors.number">
                                 Price should be greater then 0.
+                            </div>
+                        </div> -->
+
+
+<!-- <h5><label for="detail">Product Detail</label></h5>
+                        <div
+                            [ngStyle]="{'border':!productForm.controls['productDetail'].untouched && productForm.controls['productDetail'].errors? '1px solid red': 'black' }">
+                            <angular-editor formControlName="productDetail" [config]="config"></angular-editor>
+                        </div>
+                        <div *ngIf="productForm.controls['productDetail'].errors && !productForm.controls['productDetail'].untouched"
+                            class="error-msg">
+                            <div class=" select-error"
+                                [hidden]="!productForm.controls['productDetail'].errors.required">
+                                Product Detail is required.
+                            </div>
+                        </div> -->
+
+
+
+<!-- <h5> <label for="category">Select Product Category</label></h5>
+                        <select class="form-control select" formControlName="productCategory"
+                            [ngStyle]="{'border':!productForm.controls['productCategory'].untouched && productForm.controls['productCategory'].errors? '1px solid red': '1px solid' }"
+                            name="" id="">
+                            <option [disabled]="true">--select category--</option>
+                            <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}
+                            </option>
+                        </select>
+
+
+                        <div *ngIf="productForm.controls['productCategory'].errors && !productForm.controls['productCategory'].untouched"
+                            class="error-msg ">
+                            <div class="select-error"
+                                [hidden]="!productForm.controls['productCategory'].errors.required">
+                                Product Category is required.
                             </div>
                         </div> -->

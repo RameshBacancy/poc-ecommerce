@@ -20,7 +20,7 @@ import { ProductsComponent } from './products/products.component';
     ProductsComponent,
     AddEditProductComponent,
     CategoriesComponent,
-    AddEditCategoryComponent
+    AddEditCategoryComponent,
   ],
   imports: [
     CommonModule,
