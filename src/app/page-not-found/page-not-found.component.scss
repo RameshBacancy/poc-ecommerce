@@ -1,6 +1,5 @@
-.body {
-  background: #2f3242;
-}
+@import 'src/assets/scss/index.scss';
+
 svg {
   position: absolute;
   top: 50%;
@@ -9,7 +8,6 @@ svg {
   margin-left: -400px;
 }
 .message-box {
-
   height: 200px;
   width: 380px;
   position: absolute;
@@ -17,12 +15,12 @@ svg {
   left: 50%;
   margin-top: -100px;
   margin-left: 50px;
-  color: #2f3242;
+  color: $primary-dark-gray;
   font-family: Roboto;
   font-weight: 300;
 }
 .message-box h1 {
-  font-size: 60px;
+  font-size: $fontsize-60;
   line-height: 46px;
   margin-bottom: 40px;
 }
@@ -30,20 +28,20 @@ svg {
   margin-top: 40px;
 }
 .buttons-con .action-link-wrap a {
-  background: #68c950;
+  background: $primary-button-pressed;
   padding: 8px 25px;
   border-radius: 4px;
-  color: #fff;
+  color: $color-gray;
   font-weight: bold;
-  font-size: 14px;
+  font-size: $fontsize-14;
   transition: all 0.3s linear;
   cursor: pointer;
   text-decoration: none;
   margin-right: 10px;
 }
 .buttons-con .action-link-wrap a:hover {
-  background: #5a5c6c;
-  color: #fff;
+  background: $primary-button-hover;
+  color: $color-gray;
 }
 
 #Polygon-1,

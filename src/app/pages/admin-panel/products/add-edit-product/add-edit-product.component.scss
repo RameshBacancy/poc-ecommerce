@@ -1,3 +1,6 @@
+@import 'src/assets/scss/index.scss';
+
+
 .header {
   height: 60px;
 }
@@ -25,14 +28,14 @@
   border: 2px solid rgb(4, 88, 84);
   padding: 14px 40px;
   outline: none;
-  color: white;
+  color: $color-white;
   border-radius: 24px;
   transition: 0.25s;
   cursor: pointer;
 }
 
 .box .button:hover {
-  background: cadetblue;
+  background: $blue-light; //cadetblue;
 }
 
 
@@ -45,14 +48,14 @@
   padding: 0;
   margin-left: 0;
   text-align: left;
-  color: red;
+  color: $error;
   // background-color: aliceblue;
   font-size: small;
   box-sizing: border-box;
 }
 
 .error{
-  border:1px solid red;
+  border:1px solid $error;
 }
 
 .label {

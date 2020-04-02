@@ -12,11 +12,13 @@ export class GuideTestComponent implements OnInit {
   public sliderForm: FormGroup;
   public selectForm: FormGroup;
   public dateBasicForm: FormGroup;
+  public editorForm: FormGroup;
 
   submitted = false; // form submitted or not
   selectSubmitted = false;
   selectOptions: any[]; // dropwown options
   selectedOptions: any; // selected option from dropdown
+  editorSubmitted = false; // editor from submitted or not
 
   sliderMin = 20; // range slider minimum value
   sliderMax = 50; // range slider maximum value
@@ -47,6 +49,7 @@ export class GuideTestComponent implements OnInit {
   public stapperFormWithMax = new FormGroup({
     val: new FormControl(null, [Validators.required])
   });
+
 
   constructor(
     private fb: FormBuilder,
@@ -118,11 +121,18 @@ export class GuideTestComponent implements OnInit {
     };
     // End slider options value
 
+    // Start editor  form group build
+    this.editorForm = this.fb.group({
+      details: ['aa', Validators.required]
+    });
+    // End editor form group build
   }
 
   get f() { return this.textareaForm.controls; }
 
   get s() { return this.selectForm.controls; }
+
+  get e() { return this.editorForm.controls; }
 
   // Start textarea form control validation while submit form
   public onSubmit() {
@@ -134,6 +144,20 @@ export class GuideTestComponent implements OnInit {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.textareaForm.value));
   }
   // End textarea form control validation while submit form
+
+
+
+  // Start editor form control validation while submit form
+  public onEditorSubmit() {
+    this.editorSubmitted = true;
+    // stop here if form is invalid
+    if (this.editorForm.invalid) {
+      return;
+    }
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.editorForm.value));
+  }
+  // End editor form control validation while submit form
+
 
   // Start Select dropdown Emitted selected options value
   public onSelectOption(val) {
