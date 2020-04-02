@@ -33,19 +33,42 @@ export class ProductComponent implements OnInit {
     // this.previousProductDisplayId = id;
     document.getElementById(id).setAttribute('class', 'selected');
   }
-  selectedtab(id) {
+  // selectedtab(id) {
+  //   if (this.previousProductDisplayId) {
+  //     this.deselectedtab(this.previousProductDisplayId);
+  //   }
+  //   this.previousProductDisplayId = id;
+  //   this.singleProduct = this.products.filter(product => product.key === id);
+  //   document.getElementById(id).setAttribute('class', 'tabselected');
+  // }
+
+  selectedtab(id, i) {
+    console.log('c');
     if (this.previousProductDisplayId) {
       this.deselectedtab(this.previousProductDisplayId);
     }
-    this.previousProductDisplayId = id;
-    this.singleProduct = this.products.filter(product => product.key === id);
-    document.getElementById(id).setAttribute('class', 'tabselected');
+
+    if (this.previousProductDisplayId !== id) {
+      this.previousProductDisplayId = id;
+      this.singleProduct = this.products.filter(product => product.key === id);
+      document.getElementById(id).setAttribute('class', 'tabselected');
+      if (i % 4 == 1) {
+        document.getElementById(id).style.marginLeft = '-254px';
+      } else if (i % 4 == 2) {
+        document.getElementById(id).style.marginLeft = '-513px';
+      } else if (i % 4 == 3) {
+        document.getElementById(id).style.marginLeft = '-773px';
+      }
+    }else{
+    this.previousProductDisplayId = '';
+    }
+
   }
   deselectColumn(id) {
     document.getElementById(id).setAttribute('class', 'list');
   }
   deselectedtab(id) {
-    this.previousProductDisplayId = '';
+    // this.previousProductDisplayId = '';
     this.singleProduct = { key: '' };
     document.getElementById(id).setAttribute('class', 'tabnotselected');
   }

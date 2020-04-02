@@ -2,19 +2,31 @@
 </div>
 <div class="main">
         <div class="grid_list_search_bar">
-                <img src="/assets/list.png" (click)="listview=true">
-                <img src="/assets/menu.png" (click)="listview=false">
-                <input type="text" placeholder="Search">
+                <input type="text" class="fa" placeholder="&#xf002;  Search Product">
+                <!-- <button (click)="listview=false" style="width: auto; height: auto;"></button> -->
+                <i class="fa fa-list fa-2x" (click)="listview=true"> </i>
+                <i class="fa fa-th fa-2x" (click)="listview=false"></i>
+                <div class="vertical_Line"></div>
+                <!-- <div class="dropdown"> -->
+                        <select class="dropdown_Select">
+                                <option selected disabled hidden>Sort By: Default</option>
+                                <option>Default</option>
+                                <option>Price- Low To High</option>
+                                <option>Price- High To Low</option>
+                        </select>
+                <!-- </div> -->
+                <!-- <img src="/assets/list.png" (click)="listview=true"> -->
+                <!-- <img src="/assets/menu.png" (click)="listview=false"> -->
         </div>
         <!-- Grid View -->
         <div class="row grid_row" *ngIf="!listview">
-                <div class="column" *ngFor="let product of products">
+                <div class="column" *ngFor="let product of products; let i=index">
                         <div class="tab">
-                                <div class="image" (click)="selectedtab(product.key);">
+                                <div class="image" (click)="selectedtab(product.key, i);">
                                         <img src={{product.productImageUrl}}>
                                 </div>
                                 <div class="content">
-                                        <h5 (click)="selectedtab(product.key);" class="title_content">
+                                        <h5 (click)="selectedtab(product.key, i);" class="title_content">
                                                 {{product.productTitle}}</h5>
                                         <hr>
                                         <h4>{{product.productPrice | currency:'INR'}}</h4>
