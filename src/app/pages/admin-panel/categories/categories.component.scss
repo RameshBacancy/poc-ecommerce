@@ -5,13 +5,13 @@
         width: 495px;
         padding: 20px;
         border-radius: 8px;
-        border: 1px solid #D0D8E8;
-        background: #fff;
+        border: 1px solid $grey-light;
+        background: $color-white;
     }
     .number-search-results{
         border-radius: 8px;
-        border-left: 1px solid #D0D8E8;
-        border-right: 1px solid #D0D8E8;
-        background: #fff;
+        border-left: 1px solid $grey-light;
+        border-right: 1px solid $grey-light;
+        background: $color-white;
     }
 }

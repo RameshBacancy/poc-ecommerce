@@ -119,4 +119,27 @@
     <div>
         <app-progress-bar value=12></app-progress-bar>
     </div>
+
+    <br>
+    <br>
+    <div>
+        <form [formGroup]="editorForm" (ngSubmit)="onEditorSubmit()">
+            <app-kolkov-editor-basic 
+                label="Kolkov Editor Demo" 
+                placeholder="Please Enter details..."
+                [group]="editorForm" 
+                name="details" 
+                [ngClass]="{'is-invalid':editorSubmitted && editorForm.controls['details'].errors }">
+                <div rx-error
+                *ngIf="(editorSubmitted && e.details.errors) || (e.details.invalid && ( e.details.dirty || e.details.touched))">
+                Error
+                message text goes here</div>
+            </app-kolkov-editor-basic>
+
+            <button type="submit" class="primary submit">Submit</button>
+            <div>
+                <pre>{{editorForm.value | json}}</pre>
+            </div>
+        </form>
+    </div>
 </div>

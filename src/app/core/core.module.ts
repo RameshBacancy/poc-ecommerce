@@ -14,6 +14,9 @@ import { CheckboxMultipleComponent } from './checkbox-multiple/checkbox-multiple
 import { RatingStarsComponent } from './rating-stars/rating-stars.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { LimitToPipe } from './pipe/limit-to.pipe';
+import { KolkovEditorBasicComponent } from './kolkov-editor-basic/kolkov-editor-basic.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -29,6 +32,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     CheckboxMultipleComponent,
     RatingStarsComponent,
     ProgressBarComponent,
+    LimitToPipe,
+    KolkovEditorBasicComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +41,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     ReactiveFormsModule,
     Ng5SliderModule,
     AngularFontAwesomeModule,
+    AngularEditorModule
   ],
   exports: [
     FormsModule,
@@ -51,7 +57,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     CheckboxMultipleComponent,
     RatingStarsComponent,
     ProgressBarComponent,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    LimitToPipe,
+    KolkovEditorBasicComponent
   ],
   providers: [ ]
 })

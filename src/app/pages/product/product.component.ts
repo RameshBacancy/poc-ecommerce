@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
+import { SearchStringPipe } from 'src/app/core/pipe/search-string.pipe';
 
 @Component({
   selector: 'app-product',
@@ -11,22 +12,62 @@ export class ProductComponent implements OnInit {
 
   singleProduct: any = { key: '' };
   previousProductDisplayId: string = '';
+  selectedSortByValue="DEFAULT";
+  sortByClicked=false;
+  search="";
 
   products;
+  products1;
   listview = false;
+
   constructor(private productData: ProductService,
-    private userService: UserService
+    private userService: UserService,
+    private searchPipe:SearchStringPipe
     ) { }
 
   ngOnInit(): void {
     this.userService.logout();
     this.loadProduct();
   }
-
+  
   loadProduct() {
     this.productData.getAllProduct().subscribe(res => {
       this.products = res;
-    });
+      this.products1 = res;
+    },
+    err=>alert("err"),
+    ()=>this.searchProduct(this.products)
+    );
+  }
+  
+  searchProduct(product1 ?:any){
+    if(!product1){
+      product1=this.products1
+    }
+    this.products=this.searchPipe.transform(product1,"productTitle", this.search);
+  }
+
+  sortByValue(value){
+    this.selectedSortByValue=value;
+    this.sortByClicked=false;
+    console.log(value);
+    if(value=="DEFAULT"){
+      this.loadProduct();
+    } 
+    if(value=="PRICE- LOW TO HIGH"){
+      console.log(value);
+      this.products.sort((a,b)=>{
+        return a.productPrice-b.productPrice
+      });
+      this.searchProduct(this.products);
+    }
+    if(value=="PRICE- HIGH TO LOW"){
+      console.log(value);
+      this.products.sort((a,b)=>{
+        return b.productPrice-a.productPrice
+      });
+      this.searchProduct(this.products);
+    }
   }
 
   selectedColumn(id) {
