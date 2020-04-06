@@ -14,6 +14,7 @@ import { AdminComponent } from './admin.component';
 import { GuideTestComponent } from './guide-test/guide-test.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { DashboardTestComponent } from './dashboard-test/dashboard-test.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -23,7 +24,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     AddEditCategoryComponent,
     GuideTestComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    DashboardTestComponent,
+    DashboardTestComponent
   ],
   imports: [
     CommonModule,
