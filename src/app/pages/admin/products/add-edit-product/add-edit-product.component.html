@@ -1,0 +1,140 @@
+<div class="row header">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 title">
+        <h2 *ngIf="!productId">Add New Product</h2>
+        <h2 *ngIf="productId">Edit Product</h2>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
+
+<div class="row" *ngIf="categories.length">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="main-div mb-5">
+            <!-- <form [formGroup]="product" (ngSubmit)="onProductSubmit()"> -->
+            <form [formGroup]="productForm" (submit)="onProductSubmit()">
+
+                <ng-container *ngIf="categories">
+                    <!-- product category select option -->
+                    <div class="form-group">
+                        <app-select-basic [options]="categories" label="Select Product Category" placeholder="Select..."
+                            formControlName="productCategory" [group]="productForm" name="productCategory"
+                            [ngClass]="{'is-invalid':productForm.submit && productForm.controls['productCategory'].errors }"
+                            icon="time-blue" [selectedValue]="productForm.get('productCategory').value">
+                            <div rx-error
+                                *ngIf="productForm.submit && productForm.controls['productCategory'].errors || (productForm.get('productCategory').invalid && (productForm.get('productCategory').dirty || productForm.get('productCategory').touched))">
+                                Product Category is required.</div>
+                        </app-select-basic>
+                    </div>
+
+                    <!-- product title -->
+                    <div class="form-group">
+                        <app-input-basic label="Product Title" type="text" [fc]="productForm.get('productTitle')"
+                            placeholder="Please enter product title" icon="title">
+                        </app-input-basic>
+                    </div>
+
+                    <!-- product Detail -->
+                    <div class="form-group">
+                        <app-kolkov-editor-basic label="Product Details" placeholder="Please Enter product details..."
+                            [group]="productForm" name="productDetail"
+                            [ngClass]="{'is-invalid': productForm.submit && productForm.controls['productDetail'].errors }">
+                            <div rx-error
+                                *ngIf="(productForm.controls['productDetail'].invalid && ( productForm.controls['productDetail'].dirty || productForm.controls['productDetail'].touched))">
+                                Product Details required.
+                            </div>
+                        </app-kolkov-editor-basic>
+                    </div>
+
+                    <!-- product image url -->
+                    <div class="form-group">
+                        <h5><label for="imageUrl">Product Image</label></h5>
+                        <div class="form-group">
+                            <label for=""></label>
+                            <input type="file" class="d-none" #fileInput (change)="onPhotoSelected($event)"
+                               required accept="image/*">
+                            <button type="button" class="primary submit" (click)="fileInput.click()">Select
+                                Photo</button> <span>
+                                {{ productForm.value.productImage }} </span>
+                        </div>
+                        <!-- product image url error -->
+                        <div *ngIf="fileInputerrors && !fileInput.untouched" class="error-msg">
+                            <div class="alert alert-danger" [hidden]="!fileInput.errors.required">
+                                Product Image Url is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- product price   -->
+                    <div class="form-group">
+                        <app-input-basic label="Product Price" type="number" [fc]="productForm.get('productPrice')"
+                            placeholder="Please enter product price" icon="title">
+                        </app-input-basic>
+                    </div>
+
+
+                    <!-- product link   -->
+                    <div class="form-group">
+                        <app-input-basic label="Product Link" type="text" [fc]="productForm.get('productLink')"
+                            placeholder="Please enter product Link" icon="title">
+                        </app-input-basic>
+
+                    </div>
+
+                    <!-- product delivery type   -->
+                    <div class="form-group">
+                        <app-input-basic label="Product Delivery Type" type="text"
+                            [fc]="productForm.get('productDeliveryType')"
+                            placeholder="Please enter product delivery type" icon="title">
+                        </app-input-basic>
+                    </div>
+
+                    <!-- product site name   -->
+                    <div class="form-group">
+                        <app-input-basic label="Product Site Name" type="text" [fc]="productForm.get('productSiteName')"
+                            placeholder="Please enter product site name" icon="title">
+                        </app-input-basic>
+
+                    </div>
+
+                    <!-- product site url -->
+                    <div class="form-group">
+                        <app-input-basic label="Product Site Url" type="text" [fc]="productForm.get('productSiteLink')"
+                            placeholder="Please enter product site url" icon="title">
+                        </app-input-basic>
+                    </div>
+
+
+                    <!-- product affiliate link -->
+                    <div class="form-group">
+                        <app-input-basic label="Affiliate Link" type="text"
+                            [fc]="productForm.get('productAffiliateLink')" placeholder="Please enter affiliate link"
+                            icon="title">
+                        </app-input-basic>
+                    </div>
+
+
+
+                    <button type="submit" *ngIf="!productId" class="btn btn-primary"
+                        [disabled]="productForm.invalid">Add
+                        Product</button>
+                    <button type="submit" *ngIf="productId" class="btn btn-primary"
+                        [disabled]="productForm.invalid">Edit
+                        Product</button>
+
+
+                </ng-container>
+
+            </form>
+
+
+
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+
+
+

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -30,7 +32,7 @@ export class LoginComponent implements OnInit {
         email: this.login.controls['email'].value,
         password: this.login.controls['password'].value
       };
-      console.log('user :: ', user);
+      // console.log('user :: ', user);
       this._userService.login(user)
         .subscribe(res => {
           if (res.token) {
@@ -39,8 +41,9 @@ export class LoginComponent implements OnInit {
           }
         },
           error => {
-            console.log('error : ', error);
-            debugger;
+            // console.log('error : ', error);
+            this.alertService.pushError("Error: something wrong");
+            // debugger;
           },
         );
     }

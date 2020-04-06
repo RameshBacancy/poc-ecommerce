@@ -15,7 +15,6 @@ export class CategoryService {
   // for load all category form firebase database
   getCategory(): Observable<Category[]> {
     return this.httpService.httpGet(EndPoint.category).pipe(map((res: any) => {
-      // console.log('---category service---', res);
       let categories = [];
       for (const key in res) {
         categories.push({ value: key, name: res[key]['name']  });
@@ -33,7 +32,6 @@ export class CategoryService {
   editCategory(category: Category): Observable<any> {
     let path = EndPoint.hCategory + category.value + '.json';
     return this.httpService.httpPut(path, { name: category.name }).pipe(map(res => {
-      // console.log('---category service---', res);
       return res;
     }));
   }

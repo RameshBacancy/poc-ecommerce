@@ -1,0 +1,25 @@
+@import 'src/assets/scss/index.scss';
+.number-list-content{
+    padding-top:15px;
+    .number-search-filter{
+        width: 200px;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid $grey-light;
+        background: $color-white;
+    }
+    .number-search-results{
+        border-radius: 8px;
+        border-left: 1px solid $grey-light;
+        border-right: 1px solid $grey-light;
+        background: $color-white;
+    }
+}
+
+.table-td{
+    max-width: 300px;
+}
+
+.add-product{
+    margin-left: 83%;
+}

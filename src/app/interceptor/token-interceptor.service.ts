@@ -15,7 +15,6 @@ export class TokenInterceptorService implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // console.log('interceptor call');
     const token = this.adminService.authToken;
     let newHeaders = new HttpHeaders;
     if (token) {
