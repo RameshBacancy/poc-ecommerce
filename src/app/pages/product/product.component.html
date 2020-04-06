@@ -2,20 +2,36 @@
 </div>
 <div class="main">
         <div class="grid_list_search_bar">
-                <img src="/assets/list.png" (click)="listview=true">
-                <img src="/assets/menu.png" (click)="listview=false">
-                <input type="text" placeholder="Search">
+                <input type="text" class="fa" placeholder="&#xf002;  Search Product" [(ngModel)]="search" (input)='searchProduct()'>
+                <!-- <button (click)="listview=false" style="width: auto; height: auto;"></button> -->
+                <i class="fa fa-list fa-2x" (click)="listview=true"> </i>
+                <i class="fa fa-th fa-2x" (click)="listview=false"></i>
+                <div class="vertical_Line"></div>
+                <div class="dropdown_Div">
+                        <h6 (click)="sortByClicked=!sortByClicked;">SORT BY:{{selectedSortByValue | limitTo:10}}<i class="fa fa-caret-down"></i></h6>
+                        <div *ngIf="sortByClicked" class="sort_by_menu">
+                                <div>
+                                        <h6 (click)="sortByValue('DEFAULT')">DEFAULT</h6>
+                                </div>
+                                <div>
+                                        <h6 (click)="sortByValue('PRICE- LOW TO HIGH')">PRICE- LOW TO HIGH</h6>
+                                </div>
+                                <div>
+                                        <h6 (click)="sortByValue('PRICE- HIGH TO LOW')">PRICE- HIGH TO LOW</h6>
+                                </div>
+                        </div>
+                </div>
         </div>
         <!-- Grid View -->
         <div class="row grid_row" *ngIf="!listview">
-                <div class="column" *ngFor="let product of products">
+                <div class="column" *ngFor="let product of products; let i=index">
                         <div class="tab">
-                                <div class="image" (click)="selectedtab(product.key);">
+                                <div class="image" (click)="selectedtab(product.key, i);">
                                         <img src={{product.productImageUrl}}>
                                 </div>
                                 <div class="content">
-                                        <h5 (click)="selectedtab(product.key);" class="title_content">
-                                                {{product.productTitle}}</h5>
+                                        <h5 (click)="selectedtab(product.key, i);" class="title_content">
+                                                {{product.productTitle | limitTo:30}}</h5>
                                         <hr>
                                         <h4>{{product.productPrice | currency:'INR'}}</h4>
                                         <a href="{{product.productSiteLink}}">{{product.productSiteName}}</a>
@@ -30,10 +46,10 @@
                                                 <button (click)="deselectedtab(product.key);"
                                                         class="close">&times;</button>
 
-                                                <h3>{{product.productTitle}}
+                                                <h3>{{product.productTitle | limitTo:50}}
                                                 </h3>
                                                 <br />
-                                                <h6 [innerHTML]=product.productDetail></h6>
+                                                <h6 [innerHTML]="product.productDetail | limitTo:60"></h6>
                                                 <br />
                                                 <h6><a href="{{product.productSiteLink}}">click here for more
                                                                 infromation
@@ -60,10 +76,10 @@
                                                 <button (click)="deselectColumn(product.key);"
                                                         class="close">&times;</button>
 
-                                                <h3 (click)="selectedColumn(product.key);">{{product.productTitle}}
+                                                <h3 (click)="selectedColumn(product.key);">{{product.productTitle | limitTo:30}}
                                                 </h3>
                                                 <br />
-                                                <h6 [innerHTML]=product.productDetail></h6>
+                                                <h6 [innerHTML]="product.productDetail | limitTo:50"></h6>
                                                 <br />
                                                 <h6><a href="{{product.productSiteLink}}">click here for more
                                                                 infromation
