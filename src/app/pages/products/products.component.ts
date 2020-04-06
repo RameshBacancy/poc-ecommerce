@@ -64,7 +64,6 @@ export class ProductsComponent implements OnInit {
       this.select_Default=false;
       this.select_Prc_L_to_H=true;
       this.select_Prc_H_to_L=false;
-      this.loadProduct();
       this.products.sort((a,b)=>{
         return a.productPrice-b.productPrice
       });
@@ -74,7 +73,6 @@ export class ProductsComponent implements OnInit {
       this.select_Default=false;
       this.select_Prc_L_to_H=false;
       this.select_Prc_H_to_L=true;
-      this.loadProduct();
       this.products.sort((a,b)=>{
         return b.productPrice-a.productPrice
       });
