@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { environment } from '../environments/environment';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireStorageModule } from "@angular/fire/storage";
@@ -19,10 +20,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    
     AngularFireModule.initializeApp(environment.FIRE_BASE_CONFIG, "cloud"),
     AngularFireStorageModule,
   ],

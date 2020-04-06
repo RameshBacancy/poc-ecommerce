@@ -34,7 +34,7 @@ export class ProductService {
     productAffiliateLink: '',
     key: ''
   };
-
+  AdminModule
   // load all product
   getAllProduct(): Observable<Product[]> {
     return this.httpService.httpGet(EndPoint.product).pipe(map((res: any) => {

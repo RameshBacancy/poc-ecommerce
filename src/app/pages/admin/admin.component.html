@@ -1,0 +1,4 @@
+<app-header (onViewSidebar)="onViewSidebar($event)"></app-header>
+<div class="landing-portal-content" [class.viewOpen]="viewSideBar">
+  <router-outlet></router-outlet>
+</div>

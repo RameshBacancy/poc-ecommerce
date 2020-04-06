@@ -22,14 +22,15 @@ const routes: Routes = [
   },
   {
     path: 'admin/dashboard',
-    loadChildren: './pages/admin-panel/admin-panel.module#AdminPanelModule',
+    // loadChildren: './pages/admin/admin.module#AdminModule',
+    loadChildren: './pages/admin/admin.module#AdminModule',
     canActivate: [ProtectGuard]
   },
-  {
-    path: 'landing',
-    loadChildren: './pages/landing/landing.module#LandingModule',
-    canActivate: [ProtectGuard],
-  },
+  // {
+  //   path: 'landing',
+  //   loadChildren: './pages/landing/landing.module#LandingModule',
+  //   canActivate: [ProtectGuard],
+  // },
   { path: '**', component: PageNotFoundComponent }
 ];
 

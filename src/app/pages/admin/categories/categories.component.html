@@ -1,0 +1,48 @@
+<!-- For delete popup modal -->
+<app-modal-popup 
+    *ngIf="isModalOpen"
+    [header]="'Delete Category Record'"
+    [contentBody]="'Are you sure you want to delete?'"
+    (modalResult)="onModalResult($event)"></app-modal-popup>
+<!-- end delete popup modal -->
+
+<div class="number-list-content  container-fluid">
+
+    <!--Start-- for add edit button -->
+    <div class="number-search-filter mb-4">
+        <button type="button" class="primary submit" *ngIf="isAddShow" (click)="onAddCategoryBtnClick()">Add
+            Category</button>
+        <app-add-edit-category (addCategory)="onAddCategory($event)" *ngIf="isAdd"></app-add-edit-category>
+        <app-add-edit-category (addCategory)="onAddCategory($event)" [category]="category" *ngIf="isEdit">
+        </app-add-edit-category>
+    </div>
+    <!-- End-- of add edit button -->
+
+    <!-- Start-- category list in table  -->
+    <div class="number-search-results" *ngIf="!isLoaded">
+        <div class="table-striped" *ngIf="!typeOptions.length">
+            <h2 class="text-center">No Record Found</h2>
+        </div>
+        <table class="table table-striped" *ngIf="typeOptions.length">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Category</th>
+                    <th scope="col" class="float-right mr-5">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of typeOptions; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{category.name}}</td>
+                    <td align="right">
+                        <button class="btn btn-primary mr-2" (click)="onEditCategoryBtnClick(category)">Edit</button>
+                        <button class="btn btn-danger" (click)="onDeleteClick(category.value)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- End: category list in table  -->
+
+</div>

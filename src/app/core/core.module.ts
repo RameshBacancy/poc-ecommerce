@@ -17,6 +17,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LimitToPipe } from './pipe/limit-to.pipe';
 import { KolkovEditorBasicComponent } from './kolkov-editor-basic/kolkov-editor-basic.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ModalPopupComponent } from './bootstrap/modal-popup/modal-popup.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     RatingStarsComponent,
     ProgressBarComponent,
     LimitToPipe,
-    KolkovEditorBasicComponent
+    KolkovEditorBasicComponent,
+    ModalPopupComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ProgressBarComponent,
     AngularFontAwesomeModule,
     LimitToPipe,
-    KolkovEditorBasicComponent
+    KolkovEditorBasicComponent,
+    ModalPopupComponent
   ],
   providers: [ ]
 })
