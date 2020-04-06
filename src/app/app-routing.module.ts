@@ -6,13 +6,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const routes: Routes = [
   {
-    path: 'product',
+    path: 'products',
     // loadChildren:()=>import('./pages/product/product.module').then(p=>p.ProductModule)
-    loadChildren: './pages/product/product.module#ProductModule'
+    loadChildren: './pages/products/products.module#ProductsModule'
   },
   {
     path: '',
-    redirectTo: 'product',
+    redirectTo: 'products',
     pathMatch: 'full'
   },
   {
