@@ -1,0 +1,99 @@
+<div class="sidenav">
+</div>
+<div class="main">
+<div class="grid_list_search_bar">
+<button class="btn_hide" (click)="OpenDangerAlert()">Danger</button>
+        <input type="text" class="fa" placeholder="Search Product" [(ngModel)]="search" (input)='searchProduct()'>
+        <i class="fa fa-list fa-2x" (click)="listview=true"> </i>
+        <i class="fa fa-th fa-2x" (click)="listview=false"></i>
+        <div class="vertical_Line"></div>
+        <div class="dropdown_Div" (clickOutside)="clickedOutSide();">
+                <h6 (click)="sortByClicked=!sortByClicked;">SORT BY: {{selectedSortByValue | limitTo:10}}<i class="fa fa-caret-down"></i></h6>
+                <div *ngIf="sortByClicked" class="sort_by_menu">
+                        <div class="selection">
+                                <h6 (click)="sortByValue('DEFAULT')" class="selection_title">DEFAULT</h6>
+                                <span *ngIf="select_Default" class="fa fa-check selection_icon"></span>
+                        </div>
+                        <div class="selection">
+                                <h6 (click)="sortByValue('PRICE- LOW TO HIGH')" class="selection_title">PRICE- LOW TO HIGH</h6>
+                                <span *ngIf="select_Prc_L_to_H" class="fa fa-check selection_icon"></span>
+                        </div>
+                        <div class="selection">
+                                <h6 (click)="sortByValue('PRICE- HIGH TO LOW')" class="selection_title">PRICE- HIGH TO LOW</h6>
+                                <span *ngIf="select_Prc_H_to_L" class="fa fa-check selection_icon"></span>
+                        </div>
+                </div>
+        </div>
+</div>
+<!-- Grid View -->
+<div class="row grid_row" *ngIf="!listview">
+        <div class="column" *ngFor="let product of products; let i=index">
+                <div class="tab">
+                        <div class="image" (click)="selectedtab(product.key, i);">
+                                <img src={{product.productImageUrl}}>
+                        </div>
+                        <div class="content">
+                                <h5 (click)="selectedtab(product.key, i);" class="title_content">
+                                        {{product.productTitle | limitTo:30}}</h5>
+                                <hr>
+                                <h4>{{product.productPrice | currency:'INR'}}</h4>
+                                <a href="{{product.productSiteLink}}">{{product.productSiteName}}</a>
+                        </div>
+                </div>
+                <div id="{{product.key}}" class="tabnotselected">
+                        <div class="selected">
+                                <div class="image">
+                                        <img src={{product.productImageUrl}}>
+                                </div>
+                                <div class="content">
+                                        <button (click)="deselectedtab(product.key);"
+                                                class="close">&times;</button>
+                            
+                                        <h3>{{product.productTitle | limitTo:50}}
+                                        </h3>
+                                        <br />
+                                        <h6 [innerHTML]="product.productDetail | limitTo:60"></h6>
+                                        <br />
+                                        <h6><a href="{{product.productSiteLink}}">click here for more
+                                                        infromation
+                                                        &#187;</a></h6>
+                                        <br />
+                                        <h4>{{product.productPrice | currency:'INR'}}</h4>
+                                        <a href="{{product.productSiteLink}}">{{product.productSiteName}}</a>
+                                        <br>
+                                        <button class="btn btn-primary">Visit Site</button>
+                                </div>
+                            </div>                        </div>
+        </div>
+</div>
+<!-- List View -->
+<div *ngIf="listview">
+        <div class="row" *ngFor="let product of products">
+                <div class="col list_col">
+                        <div class="list" id="{{product.key}}">
+                                <div class="image" (click)="selectedColumn(product.key);">
+                                        <img src={{product.productImageUrl}}>
+                                </div>
+                                <div class="content">
+                                        <button (click)="deselectColumn(product.key);"
+                                                class="close">&times;</button>
+
+                                        <h3 (click)="selectedColumn(product.key);">{{product.productTitle | limitTo:50}}
+                                        </h3>
+                                        <br />
+                                        <h6 [innerHTML]="product.productDetail | limitTo:90"></h6>
+                                        <br />
+                                        <h6><a href="{{product.productSiteLink}}">click here for more
+                                                        infromation
+                                                        &#187;</a></h6>
+                                        <br />
+                                        <h4>{{product.productPrice | currency:'INR'}}</h4>
+                                        <button class="btn btn-primary btnhide">Visit Site</button>
+                                        <hr>
+                                        <div style="height: 10px; width: 100%;background-color: white;"></div>
+                                </div> 
+                        </div>
+                </div>
+        </div>
+</div>
+</div>
