@@ -23,6 +23,12 @@ export class ProductsComponent implements OnInit {
   products1;
   listview = false;
 
+  listPage = 1;
+  gridPage = 1;
+  gridPageSize = 8;
+  listPageSize = 6;
+  collectionSize:number=100
+
 
   constructor(private productData: ProductService,
     private userService: UserService,
@@ -33,17 +39,23 @@ export class ProductsComponent implements OnInit {
     this.userService.logout();
     this.loadProduct();
   }
-
+  // get data 
   loadProduct() {
     this.productData.getAllProduct().subscribe(res => {
       this.products = res;
       this.products1 = res;
+      this.collectionSize=res.length;
     },
-    err=>{this.OpenDangerAlert()},
-    ()=>{this.searchProduct(this.products)}
+    err=>this.OpenDangerAlert(),
+    ()=>this.searchProduct(this.products)
     );
   }
 
+  pageChange(){
+    window.scrollTo(0,0)
+  }
+
+  // searching function
   searchProduct(product1 ?:any){
     if(!product1){
       product1=this.products1
@@ -51,6 +63,7 @@ export class ProductsComponent implements OnInit {
     this.products=this.searchPipe.transform(product1,"productTitle", this.search);
   }
 
+  //sorting function
   sortByValue(value){
     this.selectedSortByValue=value;
     this.sortByClicked=false;
@@ -61,29 +74,31 @@ export class ProductsComponent implements OnInit {
       this.select_Prc_H_to_L=false;
     } 
     if(value=="PRICE- LOW TO HIGH"){
-      this.select_Default=false;
-      this.select_Prc_L_to_H=true;
-      this.select_Prc_H_to_L=false;
       this.products.sort((a,b)=>{
         return a.productPrice-b.productPrice
       });
+      this.select_Default=false;
+      this.select_Prc_L_to_H=true;
+      this.select_Prc_H_to_L=false;
       this.searchProduct(this.products);
     }
     if(value=="PRICE- HIGH TO LOW"){
-      this.select_Default=false;
-      this.select_Prc_L_to_H=false;
-      this.select_Prc_H_to_L=true;
       this.products.sort((a,b)=>{
         return b.productPrice-a.productPrice
       });
+      this.select_Default=false;
+      this.select_Prc_L_to_H=false;
+      this.select_Prc_H_to_L=true;
       this.searchProduct(this.products);
     }
   }
 
+  //function on outside click of sort-by menu
   clickedOutSide(){
     this.sortByClicked=false;
     }
 
+    //function for open details on click product in grid view
     selectedtab(id, i) {
       if (this.previousProductDisplayId) {
         this.deselectedtab(this.previousProductDisplayId);
@@ -103,22 +118,25 @@ export class ProductsComponent implements OnInit {
       }else{
       this.previousProductDisplayId = '';
       }
-  
     }
+
+    //function to close selected grid product
     deselectedtab(id) {
-      // this.previousProductDisplayId = '';
       this.singleProduct = { key: '' };
       document.getElementById(id).setAttribute('class', 'tabnotselected');
     }
-    
+
+    //function for open details on click product in list view
     selectedColumn(id) {
       document.getElementById(id).setAttribute('class', 'selected');
     }
   
+    //function to close selected list product
     deselectColumn(id) {
       document.getElementById(id).setAttribute('class', 'list');
     }
 
+    //to show an error for no data found
     OpenDangerAlert() {
       this.alertService.pushError('NO DATA FOUND...');
     }

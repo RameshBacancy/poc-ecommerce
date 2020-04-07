@@ -26,8 +26,9 @@
         </div>
 </div>
 <!-- Grid View -->
-<div class="row grid_row" *ngIf="!listview">
-        <div class="column" *ngFor="let product of products; let i=index">
+<div class="grid_row" *ngIf="!listview">
+        <div class="row">
+        <div class="column" *ngFor="let product of products| slice: (gridPage-1) * gridPageSize : (gridPage-1) * gridPageSize + gridPageSize; let i=index">
                 <div class="tab">
                         <div class="image" (click)="selectedtab(product.key, i);">
                                 <img src={{product.productImageUrl}}>
@@ -37,10 +38,10 @@
                                         {{product.productTitle | limitTo:30}}</h5>
                                 <hr>
                                 <h4>{{product.productPrice | currency:'INR'}}</h4>
-                                <a href="{{product.productSiteLink}}">{{product.productSiteName}}</a>
+                                <a href="{{product.productSiteLink}}" target="_blank" >{{product.productSiteName}}</a>
                         </div>
                 </div>
-                <div id="{{product.key}}" class="tabnotselected">
+                <div class="tabnotselected" id="{{product.key}}">
                         <div class="selected">
                                 <div class="image">
                                         <img src={{product.productImageUrl}}>
@@ -48,27 +49,39 @@
                                 <div class="content">
                                         <button (click)="deselectedtab(product.key);"
                                                 class="close">&times;</button>
-                            
+        
                                         <h3>{{product.productTitle | limitTo:50}}
                                         </h3>
                                         <br />
-                                        <h6 [innerHTML]="product.productDetail | limitTo:60"></h6>
+                                        <h6 [innerHTML]="product.productDetail | limitTo:90"></h6>
                                         <br />
-                                        <h6><a href="{{product.productSiteLink}}">click here for more
+                                        <h6><a href="{{product.productSiteLink}}" target="_blank" >click here for more
                                                         infromation
                                                         &#187;</a></h6>
                                         <br />
                                         <h4>{{product.productPrice | currency:'INR'}}</h4>
-                                        <a href="{{product.productSiteLink}}">{{product.productSiteName}}</a>
-                                        <br>
-                                        <button class="btn btn-primary">Visit Site</button>
-                                </div>
-                            </div>                        </div>
+                                        <a href="{{product.productSiteLink}}" target="_blank"><button class="btn btn-primary">Visit Site</button></a>
+                                        <hr>
+                                        <div  class="space_div"></div>
+                                </div> 
+                        </div>
+                </div>
+        </div>
+        </div>
+        <div class="pagination_container">
+                <ngb-pagination 
+                    [(page)]="gridPage" 
+                    [pageSize]="gridPageSize" 
+                    [collectionSize]="collectionSize"
+                    (pageChange)="pageChange()">
+                </ngb-pagination>
         </div>
 </div>
+
+        
 <!-- List View -->
 <div *ngIf="listview">
-        <div class="row" *ngFor="let product of products">
+        <div class="row" *ngFor="let product of products| slice: (listPage-1) * listPageSize : (listPage-1) * listPageSize + listPageSize">
                 <div class="col list_col">
                         <div class="list" id="{{product.key}}">
                                 <div class="image" (click)="selectedColumn(product.key);">
@@ -83,17 +96,25 @@
                                         <br />
                                         <h6 [innerHTML]="product.productDetail | limitTo:90"></h6>
                                         <br />
-                                        <h6><a href="{{product.productSiteLink}}">click here for more
+                                        <h6><a href="{{product.productSiteLink}}" target="_blank">click here for more
                                                         infromation
                                                         &#187;</a></h6>
                                         <br />
                                         <h4>{{product.productPrice | currency:'INR'}}</h4>
-                                        <button class="btn btn-primary btnhide">Visit Site</button>
-                                        <hr>
-                                        <div style="height: 10px; width: 100%;background-color: white;"></div>
+                                        <a class="btnhide" href="{{product.productSiteLink}}" target="_blank"><button class="btn btn-primary">Visit Site</button></a>
+                                        <hr  class="btnhide">
+                                        <div  class="btnhide space_div"></div>
                                 </div> 
                         </div>
                 </div>
+        </div>
+        <div class="pagination_container">
+                <ngb-pagination 
+                    [(page)]="listPage" 
+                    [pageSize]="listPageSize" 
+                    [collectionSize]="collectionSize"
+                    (pageChange)="pageChange()">
+                </ngb-pagination>
         </div>
 </div>
 </div>
