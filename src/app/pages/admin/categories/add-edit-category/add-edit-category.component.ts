@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, SimpleChanges, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, SimpleChanges, Input, EventEmitter, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CategoryService } from 'src/app/services/category.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
@@ -9,26 +9,26 @@ import { AlertService } from 'src/app/services/alert.service';
   templateUrl: './add-edit-category.component.html',
   styleUrls: ['./add-edit-category.component.scss']
 })
-export class AddEditCategoryComponent implements OnInit {
+export class AddEditCategoryComponent implements OnInit, OnChanges {
   @Output() addCategory = new EventEmitter<any>();
-  @Input('category') category = { name: '', value: '' };
+  @Input() category = { name: '', value: '' };
   categoryForm: FormGroup;
 
   constructor(
     private categoryService: CategoryService,
-    private _formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private spinnerService: SpinnerService,
     private alertService: AlertService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    //for edit category set value which is come from input
-    this.categoryForm.controls['categoryName'].setValue(this.category.name);
+    // for edit category set value which is come from input
+    this.categoryForm.controls.categoryName.setValue(this.category.name);
   }
 
   ngOnInit() {
     // load categoryForm
-    this.categoryForm = this._formBuilder.group({
+    this.categoryForm = this.formBuilder.group({
       categoryName: [this.category.name]
     });
   }
@@ -36,7 +36,7 @@ export class AddEditCategoryComponent implements OnInit {
   /** Start: for categoryForm submit and add , edit  */
   onCategoryFormSubmit(): void {
     this.spinnerService.openSpinner();
-    let categoryName = this.categoryForm.get('categoryName').value;
+    const categoryName = this.categoryForm.get('categoryName').value;
     if (this.category.value !== '' && categoryName !== this.category.name) {
       // this.category.name = categoryName;
       this.categoryService.editCategory({ name: categoryName, value: this.category.value })
@@ -47,14 +47,12 @@ export class AddEditCategoryComponent implements OnInit {
             return this.addCategory.emit('yes');
           },
           err => this.errorHandel(err));
-    }
-    else if (categoryName != '' && this.category.value === '') {
+    } else if (categoryName !== '' && this.category.value === '') {
       this.categoryService.addCategory(categoryName)
-      .subscribe(
-        res => this.addCategory.emit('yes'),
-        err => this.errorHandel(err));
-    }
-    else {
+        .subscribe(
+          res => this.addCategory.emit('yes'),
+          err => this.errorHandel(err));
+    } else {
       this.spinnerService.closeSpinner();
       return this.addCategory.emit('not');
     }

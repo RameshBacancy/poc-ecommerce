@@ -15,6 +15,11 @@ import { GuideTestComponent } from './guide-test/guide-test.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardTestComponent } from './dashboard-test/dashboard-test.component';
+import { ChartModule } from 'angular2-highcharts';
+import { PieChartComponent } from './dashboard-test/pie-chart/pie-chart.component';
+import { SingleLineChartComponent } from './dashboard-test/single-line-chart/single-line-chart.component';
+import { MultiLineChartComponent } from './dashboard-test/multi-line-chart/multi-line-chart.component';
+
 @NgModule({
   declarations: [
     AdminComponent,
@@ -26,7 +31,10 @@ import { DashboardTestComponent } from './dashboard-test/dashboard-test.componen
     HeaderComponent,
     SidebarComponent,
     DashboardTestComponent,
-    DashboardTestComponent
+    DashboardTestComponent,
+    PieChartComponent,
+    SingleLineChartComponent,
+    MultiLineChartComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +44,8 @@ import { DashboardTestComponent } from './dashboard-test/dashboard-test.componen
     FormsModule,
     CKEditorModule,
     AngularFireStorageModule,
-    AngularEditorModule
+    AngularEditorModule,
+    ChartModule
   ]
 })
 export class AdminModule { }

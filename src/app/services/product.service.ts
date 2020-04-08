@@ -34,13 +34,13 @@ export class ProductService {
     productAffiliateLink: '',
     key: ''
   };
-  AdminModule
+  // AdminModule
   // load all product
   getAllProduct(): Observable<Product[]> {
     return this.httpService.httpGet(EndPoint.product).pipe(map((res: any) => {
       const product = [];
       for (const key in res) {
-        product.push({ key: key, ...res[key] });
+        product.push({ key, ...res[key] });
       }
       return product;
     }));
@@ -86,7 +86,7 @@ export class ProductService {
     return task.snapshotChanges();
   }
 
-  //for set date for image upload
+  // for set date for image upload
   getDate(): void {
     this.imageCreatedDate = Date.now();
   }
@@ -108,7 +108,7 @@ export class ProductService {
 
   // edit product
   editProduct(productId: string, productBody: Product): Observable<any> {
-    let path = EndPoint.hProduct + productId + '.json';
+    const path = EndPoint.hProduct + productId + '.json';
     return this.httpService.httpPut(path, productBody);
   }
 

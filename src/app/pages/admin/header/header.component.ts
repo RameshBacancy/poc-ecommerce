@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Output() onViewSidebar: EventEmitter<any> = new EventEmitter();
-  public viewSideBar: boolean = false;
-  public headerMenu: boolean = false;
-  public openMessageWindow: boolean = false;
-  public showUnreadMessage: boolean = true;
-  
-  constructor(private router: Router,) { }
+  @Output() onViewSidebar = new EventEmitter();
+  public viewSideBar: boolean;
+  public headerMenu: boolean;
+  public openMessageWindow: boolean;
+  public showUnreadMessage: boolean;
+
+  constructor(private router: Router, private userService: UserService) {
+    this.viewSideBar = false;
+    this.headerMenu = false;
+    this.openMessageWindow = false;
+    this.showUnreadMessage = true;
+  }
 
   ngOnInit() {
   }
@@ -22,9 +28,7 @@ export class HeaderComponent implements OnInit {
    */
   public toDashboard() {
   }
-  /**
- * For open header menu
- */
+  /*** For open header menu */
   public openMenu() {
     this.headerMenu = !this.headerMenu;
   }
@@ -41,13 +45,13 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  onViewSideBar(){
+  onViewSideBar() {
     this.viewSideBar = !this.viewSideBar;
     this.onViewSidebar.emit(this.viewSideBar);
   }
 
-  // onLogOut(){
-  //   this.router.navigate(['/auth/login']);
-  //   this._userService.logout();
-  // }
+  onLogOut() {
+    this.router.navigate(['admin/auth/login']);
+    this.userService.logout();
+  }
 }
