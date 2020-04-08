@@ -16,7 +16,7 @@ export class KolkovEditorBasicComponent implements OnInit {
   @Input() boxWidth = '100%'; // Input box width
   @Input() marginBottom = '20px'; // Input margin on bottom
 
-  //for editor configuration
+  // for editor configuration
   config: AngularEditorConfig;
 
   constructor() { }
@@ -36,17 +36,17 @@ export class KolkovEditorBasicComponent implements OnInit {
       ],
       customClasses: [
         {
-          name: "quote",
-          class: "quote",
+          name: 'quote',
+          class: 'quote',
         },
         {
           name: 'redText',
           class: 'redText'
         },
         {
-          name: "titleText",
-          class: "titleText",
-          tag: "h1",
+          name: 'titleText',
+          class: 'titleText',
+          tag: 'h1',
         },
       ]
     };

@@ -1,4 +1,6 @@
+<!-- start: all first three card -->
 <div class="row m-2">
+    <!-- first card -->
     <div class="col-md-4 col-sm-6 col-xs-12">
         <div class="info-box border border-secondary">
             <div class="pl-1 bg-secondary border-bottom border-secondary">
@@ -9,13 +11,12 @@
                 <h2>2,102</h2>
                 <h6>Sales ready leads this month</h6>
             </div>
-            <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
     </div>
-    <!-- /.col -->
+
+    <!-- second card -->
     <div class="col-md-4 col-sm-6 col-xs-12">
-        <div class="info-box border border-secondary">
+        <div class="info-box border border-secondary ">
             <div class="pl-1 bg-secondary border-bottom border-secondary">
                 <h5>CallAttempts Today</h5>
             </div>
@@ -25,17 +26,12 @@
                 <h6>New customers this month</h6>
 
             </div>
-            <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
     </div>
-    <!-- /.col -->
 
-    <!-- fix for small devices only -->
+    <!-- third card -->
     <div class="clearfix visible-sm-block"></div>
-
     <div class="col-md-4 col-sm-6 col-xs-12">
-
         <div class="info-box border border-secondary">
             <div class="pl-1 bg-secondary border-bottom border-secondary">
                 <h5>DNS Phone Count</h5>
@@ -45,13 +41,21 @@
                 <h2>6,504</h2>
                 <h6>Leads this month</h6>
             </div>
-            <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
     </div>
-
 </div>
+<!-- end: all first three card -->
 
 
-<!-- <span class="info-box-text">Likes</span>
-          <span class="info-box-number">41,410</span> -->
+<!-- start: all three chart -->
+<div class="row w-100 mb-5">
+    <div class="col-md-4 col-sm-6 col-xs-12 ml-4">
+        <app-multi-line-chart></app-multi-line-chart>
+        <br>
+        <app-pie-chart></app-pie-chart>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <app-single-line-chart></app-single-line-chart>
+    </div>
+</div>
+<!-- end: all three chart -->

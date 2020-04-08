@@ -16,7 +16,7 @@ export class GuideTestComponent implements OnInit {
 
   submitted = false; // form submitted or not
   selectSubmitted = false;
-  selectOptions: any[]; // dropwown options
+  selectOptions: any[]; // dropdown options
   selectedOptions: any; // selected option from dropdown
   editorSubmitted = false; // editor from submitted or not
 
@@ -33,7 +33,7 @@ export class GuideTestComponent implements OnInit {
   ratingReadValue: number = 3.5;
 
   isModalOpen: boolean = true; // for modal popup show or hide
-  modalResultValue:boolean;
+  modalResultValue: boolean;
 
   public vehicleModalOpen: boolean = false;
 
@@ -198,7 +198,7 @@ export class GuideTestComponent implements OnInit {
   }
 
   // for modal output result
-  public onModalResult(e: boolean){
+  public onModalResult(e: boolean) {
     this.isModalOpen = false;
     this.modalResultValue = e;
   }
