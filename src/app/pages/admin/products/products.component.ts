@@ -11,17 +11,22 @@ import { AlertService } from 'src/app/services/alert.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  productId: string = '';
-  productImageUrl: string = '';
-  isModalOpen: boolean = false;
+  productId: string;
+  productImageUrl: string;
+  isModalOpen: boolean;
   products: Product[] = [];
-  isProductListShow: boolean = false;
+  isProductListShow: boolean;
   constructor(
     private router: Router,
     private productService: ProductService,
     private spinnerService: SpinnerService,
     private alertService: AlertService
-  ) { }
+  ) {
+  this.productId = '';
+  this.productImageUrl = '';
+  this.isModalOpen = false;
+  this.isProductListShow = false;
+  }
 
   ngOnInit() {
     this.isModalOpen = false;
@@ -58,16 +63,14 @@ export class ProductsComponent implements OnInit {
   /** End: onEditProductClick */
 
 
-  /** Start: on product delete button click 
-   * */
+  /** Start: on product delete button click */
   onDeleteProductClick(productId, productImageUrl) {
     this.isModalOpen = true;
     this.productId = productId;
     this.productImageUrl = productImageUrl;
   }
 
-  /** start:   first delete image 
-   * form storage and then after delete product */
+  /** start:   first delete image  form storage and then after delete product */
   onModalResult(result: boolean) {
     this.isModalOpen = false;
     if (result) {
@@ -93,7 +96,7 @@ export class ProductsComponent implements OnInit {
     this.productId = '';
     this.productImageUrl = '';
     this.spinnerService.closeSpinner();
-    this.alertService.pushError("Error: Something wrong");
+    this.alertService.pushError('Error: Something wrong');
   }
   /** close: errorHandel */
 

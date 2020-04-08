@@ -23,12 +23,10 @@ export class AddEditProductComponent implements OnInit {
   productForm: FormGroup;
   productId: string;
   selectedFile: File = null;
-  // fb;
   selectForm;
   demoForm: FormGroup;
   downloadURL: Observable<string>;
-  numberErrorMessage: string = 'Please enter product price';
-  //single product
+  // single product
   singleP: Product = {
     productCategory: '',
     productDeliveryType: '',
@@ -56,17 +54,17 @@ export class AddEditProductComponent implements OnInit {
     ],
     customClasses: [
       {
-        name: "quote",
-        class: "quote",
+        name: 'quote',
+        class: 'quote',
       },
       {
         name: 'redText',
         class: 'redText'
       },
       {
-        name: "titleText",
-        class: "titleText",
-        tag: "h1",
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
       },
     ]
   };
@@ -131,7 +129,7 @@ export class AddEditProductComponent implements OnInit {
   }
   /** End: loadProductForm */
 
-  /** Start: when productForm Submit for store data in database and delete if productId and if image change*/
+  /** Start: when productForm Submit for store data in database and delete if productId and if image change */
   onProductSubmit() {
     this.spinnerService.openSpinner();
     if (this.productId) {
@@ -139,7 +137,7 @@ export class AddEditProductComponent implements OnInit {
       if (this.selectedFile) {
         this.productService.deleteImage(this.singleP.productImageUrl)
           .then(res => {
-            this.productForm.controls['productImageUrl'].setValue('');
+            this.productForm.controls.productImageUrl.setValue('');
             this.uploadImage();
           }).catch(err => this.errorHandel(err));
       } else {
@@ -154,7 +152,7 @@ export class AddEditProductComponent implements OnInit {
   /** Start: when photo select */
   onPhotoSelected(e) {
     this.selectedFile = e.target.files[0];
-    this.productForm.controls['productImage'].setValue(this.selectedFile.name);
+    this.productForm.controls.productImage.setValue(this.selectedFile.name);
   }
   /** End: onPhotoSelected */
 
@@ -164,12 +162,13 @@ export class AddEditProductComponent implements OnInit {
     if (this.selectedFile) {
       this.productService.imageUpload(this.selectedFile)
         .subscribe(url => {
-          if (url.bytesTransferred == url.totalBytes) {
+          if (url.bytesTransferred === url.totalBytes) {
             const fileRef = this.storage.ref(`ProductImages/${this.productService.imageCreatedDate}`);
             this.downloadURL = fileRef.getDownloadURL();
-            this.downloadURL.subscribe(url => {
+            // tslint:disable-next-line:no-shadowed-variable
+            this.downloadURL.subscribe((url: string) => {
               if (url) {
-                this.productForm.controls['productImageUrl'].setValue(url);
+                this.productForm.controls.productImageUrl.setValue(url);
                 this.productService.removeDate();
                 this.saveDate();
               }
@@ -204,7 +203,7 @@ export class AddEditProductComponent implements OnInit {
   /** start: handel error from server side */
   errorHandel(err) {
     this.spinnerService.closeSpinner();
-    this.alertService.pushError("Error: Something wrong");
+    this.alertService.pushError('Error: Something wrong');
   }
   /** close: errorHandel */
 }

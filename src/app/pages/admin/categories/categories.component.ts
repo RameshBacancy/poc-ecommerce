@@ -12,19 +12,26 @@ import { AlertService } from 'src/app/services/alert.service';
 export class CategoriesComponent implements OnInit {
 
   isModalOpen: boolean;
-  categoryKey: string = '';
-  isAddShow: boolean = true;
-  isAdd: boolean = false;
-  isEdit: boolean = false;
+  categoryKey: string;
+  isAddShow: boolean;
+  isAdd: boolean;
+  isEdit: boolean;
   category: Category = { name: '', value: '' };
   typeOptions: Category[] = [
   ];
-  isLoaded: boolean = false;
+  isLoaded: boolean;
   constructor(
     private categoryService: CategoryService,
     private spinnerService: SpinnerService,
     private alertService: AlertService
-  ) { }
+  ) {
+    this.categoryKey = '';
+    this.isAddShow = true;
+    this.isAdd = false;
+    this.isEdit = false;
+    this.isLoaded = false;
+
+  }
 
   ngOnInit() {
     this.isModalOpen = false;
@@ -70,7 +77,7 @@ export class CategoriesComponent implements OnInit {
 
   /** start: when new category add or edit then load all category */
   onAddCategory(e) {
-    if (e == 'yes') {
+    if (e === 'yes') {
       this.loadCategory();
     }
     this.isEdit = false;
@@ -83,10 +90,10 @@ export class CategoriesComponent implements OnInit {
   onDeleteClick(categoryKey) {
     this.categoryKey = categoryKey;
     this.isModalOpen = true;
-``  }
+  }
   /** close: onDeleteClick() */
 
-  /**Start: for modal popup result for delete caregory */
+  /** Start: for modal popup result for delete category */
   onModalResult(result: boolean) {
     this.isModalOpen = false;
     if (result && this.categoryKey !== '') {
@@ -102,13 +109,13 @@ export class CategoriesComponent implements OnInit {
     }
   }
   /** close: onModalResult() */
-  
+
   /** start: handel error from server side */
   errorHandel(err) {
     this.spinnerService.closeSpinner();
     this.isModalOpen = false;
     this.categoryKey = '';
-    this.alertService.pushError("Error: Something wrong");
+    this.alertService.pushError('Error: Something wrong');
   }
   /** close: errorHandel */
 }

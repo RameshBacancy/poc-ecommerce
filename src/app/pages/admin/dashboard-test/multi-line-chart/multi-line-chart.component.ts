@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./multi-line-chart.component.scss']
 })
 export class MultiLineChartComponent implements OnInit {
-  options: Object;
-  constructor() { 
+  options: object;
+  constructor() {
     this.options = {
       title: { text: '' },
       pointStart: 'Jan',
@@ -16,10 +16,10 @@ export class MultiLineChartComponent implements OnInit {
       },
       yAxis: {
         title: {
-            text: 'Exchange rate'
+          text: 'Exchange rate'
         }
-    },
-      chart:{
+      },
+      chart: {
         height: 300,
         width: 400
       },
@@ -33,9 +33,7 @@ export class MultiLineChartComponent implements OnInit {
         name: 'Martin',
         data: [2, 2, 3, 5]
       }],
-
-
-    }
+    };
   }
 
   ngOnInit() {

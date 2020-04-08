@@ -4,13 +4,11 @@ import { CanActivate, CanActivateChild } from '@angular/router';
 
 import { ReplaySubject, Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-//import { UserService } from '../services/user.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-    // tslint:disable-next-line:no-inferrable-types
     reason: number = 1;
 
     constructor(
@@ -23,7 +21,7 @@ export class AuthGuard implements CanActivate {
         if (this.userService.isAuthenticated()) {
             this.router.navigate(['/admin/dashboard']);
             return false;
-        }else{
+        } else {
             return true;
         }
     }

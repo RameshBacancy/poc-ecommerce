@@ -6,8 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pie-chart.component.scss']
 })
 export class PieChartComponent {
-
-  options: Object;
+  options: object;
   constructor() {
     this.options = {
       chart: {
@@ -24,7 +23,6 @@ export class PieChartComponent {
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
       },
-      
       accessibility: {
         point: {
           valueSuffix: '%'
@@ -37,7 +35,7 @@ export class PieChartComponent {
           dataLabels: {
             enabled: true,
             format: '{point.percentage:.1f} %',
-            distance:-50
+            distance: -50
           },
           showInLegend: true
         }
@@ -67,8 +65,7 @@ export class PieChartComponent {
           y: 3
         }]
       }]
-
-    }
+    };
   }
 
 }
