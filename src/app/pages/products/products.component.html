@@ -12,15 +12,15 @@
                 <div *ngIf="sortByClicked" class="sort_by_menu">
                         <div class="selection">
                                 <h6 (click)="sortByValue('DEFAULT')" class="selection_title">DEFAULT</h6>
-                                <span *ngIf="select_Default" class="fa fa-check selection_icon"></span>
+                                <span *ngIf="selectedDefault" class="fa fa-check selection_icon"></span>
                         </div>
                         <div class="selection">
                                 <h6 (click)="sortByValue('PRICE- LOW TO HIGH')" class="selection_title">PRICE- LOW TO HIGH</h6>
-                                <span *ngIf="select_Prc_L_to_H" class="fa fa-check selection_icon"></span>
+                                <span *ngIf="selectedLowtoHigh" class="fa fa-check selection_icon"></span>
                         </div>
                         <div class="selection">
                                 <h6 (click)="sortByValue('PRICE- HIGH TO LOW')" class="selection_title">PRICE- HIGH TO LOW</h6>
-                                <span *ngIf="select_Prc_H_to_L" class="fa fa-check selection_icon"></span>
+                                <span *ngIf="selectedHightoLow" class="fa fa-check selection_icon"></span>
                         </div>
                 </div>
         </div>
